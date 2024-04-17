@@ -1,0 +1,8 @@
+// pull in the shared settings for all configs for this target
+#include "UnrealGame.xcconfig"
+
+// Unreal per-config variables
+UE_TARGET_CONFIG = DebugGame
+UE_UBT_BINARY_SUBPATH = UnrealGame-TVOS-DebugGame
+UE_TVOS_EXECUTABLE_NAME = UnrealGame-TVOS-DebugGame
+PRODUCT_NAME = UnrealGame-TVOS-DebugGame
