@@ -1,7 +1,9 @@
 -c
 -pipe
 -I"."
+-I"/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Private"
 -I"/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source"
+-I"/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public"
 -I"Runtime/Core/Public"
 -I"Runtime/Core/Internal"
 -I"Runtime/TraceLog/Public"
@@ -314,7 +316,7 @@
 -arch arm64
 -isysroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 -mmacosx-version-min=10.15
--include-pch "/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/WallRiderEditor/Development/Engine/SharedPCH.Engine.Cpp20.h.gch"
+-include-pch "/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/WallRiderEditor/Development/Engine/SharedPCH.Engine.Cpp20.InclOrderUnreal5_0.h.gch"
 -include "/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/UnrealEditor/Development/WallRider/Definitions.WallRider.h"
 -x objective-c++
 -std=c++20
