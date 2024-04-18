@@ -322,6 +322,6 @@
 -std=c++20
 -fpch-validate-input-files-content
 -stdlib=libc++
-"/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Private/Room.cpp"
+"/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Room.cpp"
 -MD -MF"/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/UnrealEditor/Development/WallRider/Room.cpp.d"
 -o "/Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/UnrealEditor/Development/WallRider/Room.cpp.o"

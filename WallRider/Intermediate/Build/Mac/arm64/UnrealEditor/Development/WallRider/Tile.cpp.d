@@ -4039,7 +4039,7 @@
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/bitset \
-  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Private/Tile.cpp \
+  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Tile.cpp \
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/UnrealEditor/Development/WallRider/Definitions.WallRider.h \
-  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/Tile.h \
+  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Tile.h \
   Runtime/Core/Public/CoreMinimal.h
