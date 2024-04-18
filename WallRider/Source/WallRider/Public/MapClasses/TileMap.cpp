@@ -100,3 +100,48 @@ Tile* TileMap::GetEntityTile(Entity* entity) {
     }
     return nullptr;
 }
+
+void TileMap::InitializeMap() {
+    char layout[9][9] = {
+        {'L', 'L', 'L', 'L', 'H', 'C', 'C', 'C', 'C'},
+        {'P', 'L', 'L', 'Q', 'H', 'C', 'C', 'S', 'S'},
+        {'P', 'P', 'Q', 'Q', 'H', 'S', 'S', 'S', 'S'},
+        {'P', 'P', 'Q', 'Q', 'H', 'E', 'E', 'E', 'E'},
+        {'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H'},
+        {'U', 'U', 'T', 'T', 'H', 'N', 'B', 'K', 'K'},
+        {'U', 'U', 'T', 'T', 'H', 'N', 'B', 'K', 'K'},
+        {'R', 'R', 'R', 'T', 'H', 'N', 'B', 'K', 'A'},
+        {'R', 'R', 'R', 'T', 'H', 'N', 'B', 'A', 'A'}
+    };
+
+    for (int x = 0; x < 9; ++x) {
+        for (int y = 0; y < 9; ++y) {
+            RoomType type = CharToRoomType(layout[x][y]);
+            Tiles[x][y] = new Tile();
+            Tiles[x][y]->room = new Room(type);
+            // Set borders as walls or doors as needed
+            // Logic to set walls and doors based on the room's position and type
+            // This part of the code will be implemented according to the game's rules for room accessibility and connections
+        }
+    }
+}
+
+RoomType TileMap::CharToRoomType(char c) {
+    switch (c) {
+        case 'L': return RoomType::Laboratory;
+        case 'H': return RoomType::Hallway;
+        case 'C': return RoomType::Control;
+        case 'P': return RoomType::Portal;
+        case 'Q': return RoomType::QuantumBox;
+        case 'S': return RoomType::Security;
+        case 'E': return RoomType::Electrical;
+        case 'U': return RoomType::Surgery;
+        case 'T': return RoomType::Stim;
+        case 'N': return RoomType::Nothing;
+        case 'B': return RoomType::Breakroom;
+        case 'K': return RoomType::Kitchen;
+        case 'R': return RoomType::Crematorium;
+        case 'A': return RoomType::Armory;
+        default: return RoomType::Nothing;
+    }
+}
