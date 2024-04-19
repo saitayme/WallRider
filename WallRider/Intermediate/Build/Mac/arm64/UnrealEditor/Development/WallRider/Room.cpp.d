@@ -4042,4 +4042,5 @@
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Room.cpp \
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/UnrealEditor/Development/WallRider/Definitions.WallRider.h \
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Room.h \
-  Runtime/Core/Public/CoreMinimal.h
+  Runtime/Core/Public/CoreMinimal.h \
+  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/EntityClasses/Entity.h

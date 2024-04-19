@@ -3,9 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Entity.h" // Assuming Entity class exists
+#include "EntityClasses/Entity.h" // Assuming Entity class exists
 #include <functional> // For std::function
 #include <vector> // For std::vector
+
+enum class RoomType {
+    Laboratory, Hallway, Control, Portal, QuantumBox, Security, Electrical, Surgery, Stim, Nothing, Breakroom, Kitchen, Crematorium, Armory
+};
 
 /**
  * 
@@ -26,8 +30,4 @@ private:
     std::vector<Entity*> Entities;
     std::function<void(Entity*, const std::string&)> ActOnUse;
     RoomType Type; // Added to store the room type
-};
-
-enum class RoomType {
-    Laboratory, Hallway, Control, Portal, QuantumBox, Security, Electrical, Surgery, Stim, Nothing, Breakroom, Kitchen, Crematorium, Armory
 };

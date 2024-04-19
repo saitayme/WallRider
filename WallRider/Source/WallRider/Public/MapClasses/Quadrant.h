@@ -14,6 +14,7 @@ public:
 
     void LockQuadrant();
     bool CheckIfShadewalkerPresent();
+    unsigned int GetQuadrantId() const { return QuadrantId; } // Added GetQuadrantId method
 
 private:
     unsigned int QuadrantId;

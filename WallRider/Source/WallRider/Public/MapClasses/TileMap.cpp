@@ -1,5 +1,7 @@
 #include "TileMap.h"
 
+#include "Room.h"
+
 TileMap::TileMap() {}
 
 TileMap::~TileMap() {}
@@ -28,7 +30,14 @@ void TileMap::UpdateFields(std::vector<Tile*> tiles) {
     };
 
     Tile* sourceTile = tiles[0]; // first tile is da source
-    int sourceX, sourceY; // These are determined based on the sourceTile's position in the Tiles array
+    int sourceX, sourceY;
+    // Assuming we have an entity variable that represents the entity on the sourceTile
+    Entity* entity = sourceTile->GetEntity(); // This line is hypothetical and depends on your implementation
+    FindSourceTilePosition(entity, sourceX, sourceY);
+    if (sourceX == -1 || sourceY == -1) {
+        // Handle error: sourceTile not found
+        return;
+    }
 
     for (int i = 0; i < effectPattern.size(); ++i) {
         for (int j = 0; j < effectPattern[i].size(); ++j) {
@@ -50,8 +59,8 @@ void TileMap::UpdateFields(std::vector<Tile*> tiles) {
 bool TileMap::IsBlockedByWall(int x, int y) {
     Tile tile = Tiles[x][y];
     // Example logic to check if any border of the tile is not walkable
-    for (auto const& border : tile.Borders) {
-        if (border.second == BorderType::NotWalkThrough || border.second == BorderType::Locked) {
+    for (auto const& border : tile.GetBorders()) {
+        if (border.second == BorderType::Locked) {
             return true;
         }
     }
@@ -81,19 +90,19 @@ void TileMap::LockQuadrant(unsigned int QuadrantId) {
 }
 
 unsigned int TileMap::GetShadewalkerQuadrant() {
-    for (auto& quadrant : Quadrants) { // Assuming 'Quadrants' is a collection of all quadrants
+    for (auto& quadrant : Quadrants) { // Cuz 'Quadrants' is a collection of all quadrants
         if (quadrant->CheckIfShadewalkerPresent()) {
             return quadrant->GetQuadrantId(); // Assuming a GetQuadrantId finds an ID
         }
     }
-    return 0; // Return 0 if the Shadewalker is not found in any quadrant
+    return 0; // Return 0 if the Shadewalker is not found in any quadrant Ps: SHOULDN'T HAPPEN BRO
 }
 
 Tile* TileMap::GetEntityTile(Entity* entity) {
     for (auto& row : Tiles) {
         for (Tile& tile : row) {
-            auto it = std::find(tile.CurrentEntities.begin(), tile.CurrentEntities.end(), entity);
-            if (it != tile.CurrentEntities.end()) {
+            auto it = std::find(tile.GetCurrentEntities().begin(), tile.GetCurrentEntities().end(), entity);
+            if (it != tile.GetCurrentEntities().end()) {
                 return &tile;
             }
         }
@@ -117,8 +126,8 @@ void TileMap::InitializeMap() {
     for (int x = 0; x < 9; ++x) {
         for (int y = 0; y < 9; ++y) {
             RoomType type = CharToRoomType(layout[x][y]);
-            Tiles[x][y] = new Tile();
-            Tiles[x][y]->room = new Room(type);
+            Tiles[x][y] = Tile();
+            Tiles[x][y].SetRoom(new Room(type));
             // Set borders as walls or doors as needed
             // Logic to set walls and doors based on the room's position and type
             // This part of the code will be implemented according to the game's rules for room accessibility and connections
@@ -144,4 +153,18 @@ RoomType TileMap::CharToRoomType(char c) {
         case 'A': return RoomType::Armory;
         default: return RoomType::Nothing;
     }
+}
+
+void TileMap::FindSourceTilePosition(Entity* entity, int& sourceX, int& sourceY) {
+    for (int x = 0; x < Tiles.size(); ++x) {
+        for (int y = 0; y < Tiles[x].size(); ++y) {
+            if (Tiles[x][y].HasEntity(entity)) { // Corrected member access
+                sourceX = x;
+                sourceY = y;
+                return;
+            }
+        }
+    }
+    sourceX = -1; // Indicate not found
+    sourceY = -1;
 }

@@ -4042,4 +4042,9 @@
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Quadrant.cpp \
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Intermediate/Build/Mac/arm64/UnrealEditor/Development/WallRider/Definitions.WallRider.h \
   /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Quadrant.h \
-  Runtime/Core/Public/CoreMinimal.h
+  Runtime/Core/Public/CoreMinimal.h \
+  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/MapClasses/Tile.h \
+  /Users/saitayme/Documents/GitHub/WallRider/WallRider/WallRider/Source/WallRider/Public/EntityClasses/Entity.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/list \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree
