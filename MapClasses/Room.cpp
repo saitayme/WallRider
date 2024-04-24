@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "../Entity/Entity.h"
 
 void Room::Use(Entity* entity, const std::string& instruction) {
     // Implementation depends on the instruction and entity interaction

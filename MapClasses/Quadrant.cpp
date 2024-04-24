@@ -1,5 +1,5 @@
 #include "Quadrant.h"
-#include "MapClasses/Tile.h"
+#include "../MapClasses/Tile.h"
 
 Quadrant::Quadrant(unsigned int QuadrantId, std::vector<Tile*> bounds) : QuadrantId(QuadrantId), bounds(bounds) {}
 

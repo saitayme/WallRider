@@ -1,5 +1,5 @@
 #include "Tile.h"
-
+#include "../Entity/Entity.h"
 #include "Room.h"
 
 // Parameters added as per instructions
@@ -40,7 +40,7 @@ void Tile::ChangeBehaviour(BehaviourType newBehaviour) {
 
 bool Tile::HasShadewalker() const {
     for (const auto& entity : CurrentEntities) {
-        if (entity->IsShadewalker()) { 
+        if (entity->FactionType == FactionType::Shadewalker) { 
             return true;
         }
     }

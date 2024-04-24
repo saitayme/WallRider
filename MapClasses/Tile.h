@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EntityClasses/Entity.h" // Assuming Entity class exists
+#include "../Entity/Entity.h" // Assuming Entity class exists
 #include <list> // For std::list
 #include <map> // For std::map
 #include <string> // For std::string
 #include <algorithm> // For std::find
+#include "../MapClasses/Room.h"
 
 enum class BorderType { None, Wall, Locked, LockedWall };
 enum class BehaviourType { Light, Fire, Sound, None };

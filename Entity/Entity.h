@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <map>
 
+enum class FactionType {
+    Player, Posessed, Shadewalker
+};
+
 class Entity
 {
 public:
@@ -18,7 +22,7 @@ public:
 	// std::map<FString, ActionType> Dictionary;
 	
 	int TileLocation[9][9];
-	FString FactionType;
+	FactionType FactionType;
 
 	// Functions
 	void Interact(FString IInteractable);

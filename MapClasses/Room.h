@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EntityClasses/Entity.h" // Assuming Entity class exists
+#include "../Entity/Entity.h" // Assuming Entity class exists
 #include <functional> // For std::function
 #include <vector> // For std::vector
 
