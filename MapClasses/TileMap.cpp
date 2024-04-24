@@ -5,7 +5,8 @@
 TileMap::TileMap() {}
 
 TileMap::~TileMap() {}
-
+/*
+TODO: use Unreals TArray instead, unreal does not fully support c++ standard library!
 std::vector<std::vector<Tile>> TileMap::DuplicateMap() {
     std::vector<std::vector<Tile>> mapCopy;
     for (const auto& row : Tiles) {
@@ -17,7 +18,7 @@ std::vector<std::vector<Tile>> TileMap::DuplicateMap() {
     }
     return mapCopy;
 }
-
+*/
 void TileMap::UpdateFields(std::vector<Tile*> tiles) {
     if (tiles.empty()) return;
 
@@ -109,7 +110,8 @@ Tile* TileMap::GetEntityTile(Entity* entity) {
     }
     return nullptr;
 }
-
+/*
+ *TODO: use Unreals TArray instead, unreal does not fully support c++ standard library!
 void TileMap::InitializeMap() {
     char layout[9][9] = {
         {'L', 'L', 'L', 'L', 'H', 'C', 'C', 'C', 'C'},
@@ -134,7 +136,7 @@ void TileMap::InitializeMap() {
         }
     }
 }
-
+*/
 RoomType TileMap::CharToRoomType(char c) {
     switch (c) {
         case 'L': return RoomType::Laboratory;
