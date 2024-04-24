@@ -1,8 +1,0 @@
-// pull in the shared settings for all configs for this target
-#include "WallRider.xcconfig"
-
-// Unreal per-config variables
-UE_TARGET_CONFIG = Development
-UE_UBT_BINARY_SUBPATH = WallRider
-UE_TVOS_EXECUTABLE_NAME = WallRider
-PRODUCT_NAME = WallRider
