@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "WallRider/Entity/AEntity.h"
-#include "WallRider/Entity/Entity.h"
 #include "WallRider/MapClasses/Board.h"
 #include "Wallrider/GameMode/PlayerHostController.h"
 #include "GameController.generated.h"

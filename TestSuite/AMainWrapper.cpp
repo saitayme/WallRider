@@ -1,6 +1,6 @@
 #include "AMainWrapper.h"
 #include "../Action/Move.h"
-#include "../Entity/Player.h"
+#include "../Entity/PlayerEntity.h"
 
 // Sets default values
 AMainWrapper::AMainWrapper()
@@ -14,8 +14,4 @@ void AMainWrapper::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	Player p;
-	p.Use("Players related Entity", "Players related Instruction");
-	Action::Move m;
-	m.Act("Move related Instruction");
 }

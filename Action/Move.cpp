@@ -1,12 +1,10 @@
-﻿#include "Move.h"
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
-#include "WallRider/TestSuite/UDebugLogger.h"
 
-namespace Action
+#include "Move.h"
+
+
+void UMove::Act(FString Instructions)
 {
-	void Move::Act(const FString& Instruction)
-	{
-		FString output = FString::Printf(TEXT("Move::Act called with: %s"), *Instruction);
-		UDebugLogger::Log(output);
-	}
+	//TODO: Implement this
 }

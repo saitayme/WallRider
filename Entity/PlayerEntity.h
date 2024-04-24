@@ -3,22 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
-#include "Board.generated.h"
+#include "AEntity.h"
+#include "PlayerEntity.generated.h"
 
+	
 UCLASS()
-class WALLRIDER_API ABoard : public AActor
+class WALLRIDER_API APlayerEntity : public AEntity
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	ABoard();
+	APlayerEntity();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+public:
 	
-private:
-	
+	virtual void Damage(const int value) override;
 };

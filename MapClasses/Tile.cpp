@@ -1,48 +1,85 @@
+﻿// Fill out your copyright notice in the Description page of Project Settings.
+
+
 #include "Tile.h"
-#include "../Entity/Entity.h"
-#include "Room.h"
 
-// Parameters added as per instructions
-float CrumValue; // The crums are a float that need to be stored
-std::list<Entity*> CurrentEntities; // Who is on that Tile
-std::map<std::string, BorderType> Borders; // What edges of the Tile are walk through and which are not
-Room* room; // What room the tile is a part of
+#include "MapEnums.h"
+#include "WallRider/Entity/AEntity.h"
+#include "WallRider/Entity/FactionType.h"
 
 
-Tile::Tile() : CrumValue(0), room(nullptr), currentBehaviour(BehaviourType::None)
+// Sets default values
+ATile::ATile()
+{
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = false;
+}
+
+void ATile::SetEdgeLocked(EEdgeType Edge, bool Locked)
+{
+	Borders[Edge] = Locked ? EBorderType::Locked : EBorderType::None; // use BorderType::None ??? idk man
+}
+
+bool ATile::HasShadewalker()
+{
+	for (const AEntity* entity : CurrentEntities) {
+		if (entity->Faction == EFactionType::Shadewalker) { 
+			return true;
+		}
+	}
+	return false;
+}
+
+TArray<AEntity*> ATile::GetCurrentEntities()
+{
+	return CurrentEntities;
+}
+
+TMap<EEdgeType, EBorderType> ATile::GetBorders()
+{
+	const TMap<EEdgeType, EBorderType> Copy = Borders;
+	return Copy;
+}
+
+EBorderType ATile::GetBorder(const EEdgeType Direction)
+{
+	const EBorderType Copy = Borders[Direction];
+	return Copy;
+}
+
+void ATile::ChangeCrumValue(float delta)
+{
+	CrumValue += delta;
+}
+
+void ATile::SetRoom(URoom* Room)
 {
 }
 
-Tile::~Tile()
+float ATile::GetCrumValue()
 {
+	return CrumValue;
 }
 
-//does what it says
-void Tile::ChangeCrums(float delta) {
-    CrumValue += delta;
-}
-//same here
-void Tile::AddEntity(Entity* entity) {
-    CurrentEntities.push_back(entity);
-}
-//if u dont get this ur stupid
-void Tile::RemoveEntity(Entity* entity) {
-    CurrentEntities.remove(entity);
-}
-//same here
-void Tile::SetEdgeLocked(const std::string& edge, bool locked) {
-    Borders[edge] = locked ? BorderType::Locked : BorderType::None; // use BorderType::None ??? idk man
-}
-// Changing behavior
-void Tile::ChangeBehaviour(BehaviourType newBehaviour) {
-    currentBehaviour = newBehaviour;
+// Called when the game starts or when spawned
+void ATile::BeginPlay()
+{
+	Super::BeginPlay();
+	
 }
 
-bool Tile::HasShadewalker() const {
-    for (const auto& entity : CurrentEntities) {
-        if (entity->FactionType == FactionType::Shadewalker) { 
-            return true;
-        }
-    }
-    return false;
+void ATile::AddEntity(AEntity* Entity)
+{
+	CurrentEntities.Add(Entity);
 }
+
+void ATile::RemoveEntity(AEntity* Entity)
+{
+	CurrentEntities.Remove(Entity);
+}
+
+ATile* ATile::Clone()
+{
+	return nullptr;
+}
+

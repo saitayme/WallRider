@@ -1,21 +1,31 @@
+﻿// Fill out your copyright notice in the Description page of Project Settings.
+
+
 #include "Room.h"
-#include "../Entity/Entity.h"
 
-void Room::Use(Entity* entity, const std::string& instruction) {
-    // Implementation depends on the instruction and entity interaction
-    if (ActOnUse) {
-        ActOnUse(entity, instruction);
-    }
+void URoom::Use(AEntity* Entity, const FString Instructions)
+{
 }
 
-void Room::AddEntity(Entity* entity) {
-    Entities.push_back(entity);
+void URoom::Sabotage()
+{
 }
 
-void Room::RemoveEntity(Entity* entity) {
-    Entities.erase(std::remove(Entities.begin(), Entities.end(), entity), Entities.end());
+void URoom::MassSabotage()
+{
 }
 
-void Room::TriggerSabotage() {
-    // Implementation depends on how sabotage affects the room or game state
+void URoom::AddEntity(AEntity* Entity)
+{
+	Entities.Add(Entity->EntityId, Entity);
 }
+
+void URoom::RemoveEntity(FString EntityId)
+{
+	if (Entities.Contains(EntityId))
+	{
+		Entities.Remove(EntityId);
+	}
+}
+
+

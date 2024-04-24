@@ -5,7 +5,6 @@
 
 #include "Kismet/GameplayStatics.h"
 
-
 // Sets default values
 AGameController::AGameController()
 {
@@ -18,7 +17,7 @@ void AGameController::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Wallrider GameMode started running sis"));
-	
+
 	SetMapRef();
 	SetPlayerHostControllerRef();
 	SpawnEntities();
@@ -80,12 +79,12 @@ void AGameController::SpawnEntities()
 		}
 	}
 	*/
-	
+
 }
 
 void AGameController::SetPlayerHostCamera()
 {
-	
+
 }
 
 void AGameController::SpawnTokens()
@@ -120,7 +119,7 @@ void AGameController::NextRound()
 		result += (float)Element;
 	}
 	DmgPerRound = result / CurrentRound;
-	
+
 	//Delete any tucked on players, which delayed their turn
 	while(delayedTurns > 0)
 	{
@@ -143,7 +142,7 @@ void AGameController::DelayEntityTurn(AEntity* entity)
 
 void AGameController::EndGame(const bool win)
 {
-	
+
 }
 
 // Called every frame
@@ -151,4 +150,3 @@ void AGameController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-

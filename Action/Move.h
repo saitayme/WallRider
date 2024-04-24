@@ -1,15 +1,17 @@
-﻿#pragma once
-#include "AbstractAction.h"
-#include "WallRider/Entity/Entity.h"
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
-namespace Action
+#pragma once
+
+#include "CoreMinimal.h"
+#include "BaseAction.h"
+#include "Move.generated.h"
+
+UCLASS()
+class WALLRIDER_API UMove : public UBaseAction
 {
-	class Move : AbstractAction
-	{
-		float CrumTrial = 0.0f;
+	GENERATED_BODY()
 
-	public:
-		// TODO recherche signature usage
-		virtual void Act(const FString& Instructions) override;
-	};
-}
+public:
+	
+	virtual void Act(FString Instructions) override;
+};

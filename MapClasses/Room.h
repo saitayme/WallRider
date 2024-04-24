@@ -1,33 +1,49 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
-#include "../Entity/Entity.h" // Assuming Entity class exists
-#include <functional> // For std::function
-#include <vector> // For std::vector
-
-enum class RoomType {
-    Laboratory, Hallway, Control, Portal, QuantumBox, Security, Electrical, Surgery, Stim, Nothing, Breakroom, Kitchen, Crematorium, Armory
-};
+#include "MapEnums.h"
+#include "UObject/Object.h"
+#include "WallRider/Entity/AEntity.h"
+#include "Room.generated.h"
 
 /**
  * 
  */
-class WALLRIDER_API Room
+UCLASS()
+class WALLRIDER_API URoom : public UObject
 {
+	GENERATED_BODY()
+	
 public:
-    Room(RoomType type); // Constructor now takes a RoomType
-    ~Room();
 
-    void Use(Entity* entity, const std::string& instruction);
-    void AddEntity(Entity* entity);
-    void RemoveEntity(Entity* entity);
-    void TriggerSabotage();
-    void SetRoomType(RoomType type); // Method to set the room type
+	UPROPERTY(BlueprintReadWrite, Category="Stats")
+	ERoomType RoomType;
+	
+	//UPROPERTY(BlueprintReadWrite, Category="Stats")
+	//UDelegateFunction ActOnUse;
+
+	
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void Use(AEntity* Entity, const FString Instructions);
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void Sabotage();
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void MassSabotage();
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void AddEntity(AEntity* Entity);
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void RemoveEntity(FString EntityId);
 
 private:
-    std::vector<Entity*> Entities;
-    std::function<void(Entity*, const std::string&)> ActOnUse;
-    RoomType Type; // Added to store the room type
+
+	TMap<FString, AEntity*> Entities;
+	bool IsSabotaged;
+
 };
