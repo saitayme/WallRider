@@ -72,9 +72,3 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
-WallRider.Build.cs
-WallRider.cpp
-WallRider.h
-
-WallRider.Build.cs
-WallRider.cpp
