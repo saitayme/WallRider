@@ -1,5 +1,4 @@
 ﻿// In case Unreal deletes pointers we still want to use
-#pragma optimize("", off)
 
 #include "Tile.h"
 
