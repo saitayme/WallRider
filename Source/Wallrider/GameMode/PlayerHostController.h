@@ -15,6 +15,28 @@ public:
 	// Sets default values for this actor's properties
 	APlayerHostController();
 
+	void SelectCurrentPlayer();
+
+	void DisplayValidFields();
+
+	void MoveCurrentPlayer();
+
+	void Interact();
+
+	void InteractWithRoom();
+
+	void InteractWithItem();
+
+	void SabotageRoom();
+
+	void InvestigateRoom();
+
+	void UseEnergyCage();
+
+	void PassTurn();
+
+	void DelayTurn();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

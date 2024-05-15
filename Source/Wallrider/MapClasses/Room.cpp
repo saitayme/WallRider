@@ -28,4 +28,14 @@ void URoom::RemoveEntity(FString EntityId)
 	}
 }
 
+void URoom::Interacted(UObject other)
+{
+	
+}
+
+void URoom::Investigated(UObject other)
+{
+	
+}
+
 

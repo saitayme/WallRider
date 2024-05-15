@@ -8,7 +8,7 @@
 
 	
 UCLASS()
-class WALLRIDER_API APlayerEntity : public AEntity
+class WALLRIDER_API APlayerEntity : public AEntity, public IInteractable
 {
 	GENERATED_BODY()
 
@@ -16,11 +16,16 @@ public:
 	// Sets default values for this actor's properties
 	APlayerEntity();
 
+	virtual void Interacted(UObject other) override;
+	virtual void Investigated(UObject other) override;
+
+	virtual void Damage(const int value) override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
 	
-	virtual void Damage(const int value) override;
+	
 };

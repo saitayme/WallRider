@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "FactionType.h"
 #include "GameFramework/Actor.h"
+#include "Wallrider/UInteractable.h"
 #include "WallRider/Action/ActionType.h"
-#include "WallRider/Action/BaseAction.h"
 #include "AEntity.generated.h"
 
 UCLASS()
@@ -30,8 +30,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category="Stats")
 	EFactionType Faction;
 
-	UPROPERTY(BlueprintReadWrite, Category="Actions")
-	TArray<UBaseAction*> Actions;
+	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
+	int XLocation;
+
+	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
+	int YLocation;
 
 	//EVENTS (also available in blueprints)
 	
@@ -47,14 +50,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void BuffAction(const TMap<EActionType,int>& Buff);
-	//TODO: Change this with actions
-
-	UFUNCTION(BlueprintCallable, Category="Actions")
-	void Interact(const FString& IInteractable);
-	//TODO: Change this with an actual interface
 	
-	UFUNCTION(BlueprintCallable, Category="Actions")
-	void Act(const UBaseAction* Action);
+	virtual void Interact(IInteractable* other);
+
+	virtual void Move(int Direction);
+	
+	
 
 	UFUNCTION(BlueprintCallable, Category="Logging")
 	void Log(const FString& s);

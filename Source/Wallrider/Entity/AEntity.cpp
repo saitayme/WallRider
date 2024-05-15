@@ -37,15 +37,14 @@ void AEntity::BuffAction(const TMap<EActionType, int>& Buff)
 	
 }
 
-void AEntity::Interact(const FString& IInteractable)
+void AEntity::Interact(IInteractable* other)
 {
-	
 }
 
-void AEntity::Act(const UBaseAction* Action)
+void AEntity::Move(int Direction)
 {
-	
 }
+
 
 void AEntity::OnNextRound() 
 {

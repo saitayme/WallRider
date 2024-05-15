@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "MapEnums.h"
 #include "UObject/Object.h"
+#include "Wallrider/UInteractable.h"
 #include "WallRider/Entity/AEntity.h"
 #include "Room.generated.h"
 
@@ -12,7 +13,7 @@
  * 
  */
 UCLASS()
-class WALLRIDER_API URoom : public UObject
+class WALLRIDER_API URoom : public UObject, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -40,6 +41,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void RemoveEntity(FString EntityId);
+
+	virtual void Interacted(UObject other) override;
+	virtual void Investigated(UObject other) override;
 
 private:
 

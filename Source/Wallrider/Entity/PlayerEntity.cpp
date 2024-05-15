@@ -10,6 +10,16 @@ APlayerEntity::APlayerEntity()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+void APlayerEntity::Interacted(UObject other)
+{
+	
+}
+
+void APlayerEntity::Investigated(UObject other)
+{
+	
+}
+
 // Called when the game starts or when spawned
 void APlayerEntity::BeginPlay()
 {

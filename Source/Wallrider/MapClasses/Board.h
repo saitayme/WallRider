@@ -28,6 +28,10 @@ public:
 
 	ATile* GetTileWithEntity(AEntity* entity);
 
+	static ATile* GetTile(int xLocation, int yLocation);
+
+	static ATile* GetAdjacentTile(ATile* Tile, int Direction);
+
 	void InitializeMap(TArray<ATile>);
 
 protected:
