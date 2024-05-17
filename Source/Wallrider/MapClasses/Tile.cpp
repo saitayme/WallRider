@@ -22,7 +22,7 @@ void ATile::SetEdgeLocked(EEdgeType Edge, bool Locked)
 bool ATile::HasShadewalker()
 {
 	for (const AEntity* entity : CurrentEntities) {
-		if (entity->Faction == EFactionType::Shadewalker) { 
+		if (entity->Faction == EFactionType::ShadeWalker) { 
 			return true;
 		}
 	}

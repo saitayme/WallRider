@@ -7,18 +7,18 @@
 // Sets default values
 AToken::AToken()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame. Is turned off to improve performance
 	PrimaryActorTick.bCanEverTick = false;
-}
 
-void AToken::Interacted(UObject other)
-{
 	
 }
 
-void AToken::Investigated(UObject other)
+void AToken::Interacted(UObject* Other)
 {
-	
+}
+
+void AToken::Investigated(UObject* Other)
+{
 }
 
 // Called when the game starts or when spawned

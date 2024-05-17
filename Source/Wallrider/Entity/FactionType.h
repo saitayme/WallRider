@@ -11,8 +11,9 @@
 UENUM(BlueprintType)
 enum class EFactionType : uint8
 {
+	Neutral = 0 UMETA(DisplayName = "Neutra") /* Used for AEntity.cpp Members initialization */,
 	Player = 0 UMETA(DisplayName = "PLAYER"),
-	Shadewalker = 1 UMETA(DisplayName = "SHADEWALKER"),
+	ShadeWalker = 1 UMETA(DisplayName = "SHADEWALKER"),
 	Possessed = 2 UMETA(DisplayName = "POSSESSED"),
-	Token = 3 UMETA(DisplayName = "TOKEN"),
+	Token = 3 UMETA(DisplayName = "TOKEN")
 };

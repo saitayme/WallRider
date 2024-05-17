@@ -16,10 +16,10 @@ public:
 	// Sets default values for this actor's properties
 	APlayerEntity();
 
-	virtual void Interacted(UObject other) override;
-	virtual void Investigated(UObject other) override;
+	virtual void Interacted(UObject* Other) override;
+	virtual void Investigated(UObject* Other) override;
 
-	virtual void Damage(const int value) override;
+	virtual void Damage(const int Value) override;
 
 protected:
 	// Called when the game starts or when spawned

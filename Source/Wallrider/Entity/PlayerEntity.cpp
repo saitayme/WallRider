@@ -10,14 +10,14 @@ APlayerEntity::APlayerEntity()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void APlayerEntity::Interacted(UObject other)
+void APlayerEntity::Interacted(UObject* Other)
 {
-	
+	Super::Interacted(Other);
 }
 
-void APlayerEntity::Investigated(UObject other)
+void APlayerEntity::Investigated(UObject* Other)
 {
-	
+	Super::Investigated(Other);
 }
 
 // Called when the game starts or when spawned
@@ -27,9 +27,9 @@ void APlayerEntity::BeginPlay()
 	
 }
 
-void APlayerEntity::Damage(const int value)
+void APlayerEntity::Damage(const int Value)
 {
-	Super::Damage(value);
+	Super::Damage(Value);
 	if (CurrentHP == 0)
 	{
 		Faction = EFactionType::Possessed;

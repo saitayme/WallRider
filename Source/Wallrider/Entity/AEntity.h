@@ -46,13 +46,18 @@ public:
 
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
-	virtual void Damage(const int value);
+	virtual void Damage(const int Value);
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void BuffAction(const TMap<EActionType,int>& Buff);
-	
-	virtual void Interact(IInteractable* other);
 
+	// I think this was Martin's approach to use the UInteractable interface
+	// virtual void Interact(IInteractable* Other);
+
+	// This is Boris' approach to use the UInteractable interface
+	virtual void Interacted(UObject* Other);
+	virtual void Investigated(UObject* Other);
+	
 	virtual void Move(int Direction);
 	
 	

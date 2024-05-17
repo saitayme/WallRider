@@ -42,8 +42,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void RemoveEntity(FString EntityId);
 
-	virtual void Interacted(UObject other) override;
-	virtual void Investigated(UObject other) override;
+	virtual void Interacted(UObject* Other) override;
+	virtual void Investigated(UObject* Other) override;
 
 private:
 
