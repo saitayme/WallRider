@@ -26,7 +26,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
 	int YLocation;
 
-	//FUNCTIONS
+	// FUNCTIONS
 	
 	virtual void Interacted(UObject* Other) override;
 	virtual void Investigated(UObject* Other) override;
