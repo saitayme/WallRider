@@ -131,6 +131,9 @@ void AEntity::OnNextRound()
 	// Reset the CurrentActionCount to MaxActionCount
 	CurrentActionCount = MaxActionCount;
 
+	// Set CurrentHP to MaxHP
+	CurrentHP = MaxHP;
+
 	// Log a message indicating the start of a new round
 	FString roundStartMessage = FString::Printf(TEXT("A new round has started for %s"), *this->GetName());
 	Log(roundStartMessage);

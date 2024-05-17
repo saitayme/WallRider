@@ -3,10 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UInteractable.h"
+#include "PlayerEntity.h"
+#include "Wallrider/UInteractable.h"
 #include "GameFramework/Actor.h"
 #include "Wallrider/Entity/FactionType.h"
-#include "Token.generated.h"
+#include "AToken.generated.h"
 
 UCLASS()
 class WALLRIDER_API AToken : public AActor, public IInteractable
@@ -34,4 +35,9 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+private:
+	FString Item; // The item that this token represents
+	static const TArray<FString> ItemList; // The list of possible items
+	
+	void Use(const APlayerEntity* PlayerEntity) const; // The function to use the item
 };

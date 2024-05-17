@@ -1,10 +1,13 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Token.h"
+#include "AToken.h"
 
-#include "Entity/AEntity.h"
+#include "AEntity.h"
+#include "PlayerEntity.h"
 
+// Initialize the list of possible items
+const TArray<FString> AToken::ItemList = {"Flare", "Sound", "Fire"};
 
 // Sets default values
 AToken::AToken()
@@ -14,14 +17,27 @@ AToken::AToken()
 {
 	// Set this actor to call Tick() every frame. Is turned off to improve performance
 	PrimaryActorTick.bCanEverTick = false;
+	
+	// Generate a random item
+	const int32 Index = FMath::RandRange(0, ItemList.Num() - 1);
+	Item = ItemList[Index];
 }
 
 void AToken::Interacted(UObject* Other)
 {
-	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
+	if (APlayerEntity* PlayerEntity = Cast<APlayerEntity>(Other))
+	{
+		// Use the item
+		Use(PlayerEntity);
+		
+		// PlayerEntity->Score += this->GetValue();
+		// Then remove the token from the game
+		this->Destroy();
+	}
+	else if (const AEntity* OtherEntity = Cast<AEntity>(Other))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *OtherEntity->GetName(), *this->GetName());
-	}	
+	}
 }
 
 void AToken::Investigated(UObject* Other)
@@ -36,5 +52,10 @@ void AToken::Investigated(UObject* Other)
 void AToken::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void AToken::Use(const APlayerEntity* PlayerEntity) const
+{
+	UE_LOG(LogTemp, Warning, TEXT("%s used at location (%d, %d)"), *Item, PlayerEntity->XLocation, PlayerEntity->YLocation);
 }
 
