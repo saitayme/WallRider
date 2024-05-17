@@ -8,7 +8,7 @@
 
 // Sets default values
 AToken::AToken()
-	: Faction(EFactionType::Token), // Initialize Faction to Token
+	: Faction(EFactionType::Token),
 	  XLocation(0),
 	  YLocation(0)
 {

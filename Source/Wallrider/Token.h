@@ -26,7 +26,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
 	int YLocation;
 
-	// FUNCTIONS
+	// Functions
 	
 	virtual void Interacted(UObject* Other) override;
 	virtual void Investigated(UObject* Other) override;
@@ -34,6 +34,4 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
-
 };

@@ -12,5 +12,4 @@ AMainWrapper::AMainWrapper()
 void AMainWrapper::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }

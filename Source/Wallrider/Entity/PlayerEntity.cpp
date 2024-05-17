@@ -37,5 +37,3 @@ void APlayerEntity::Damage(const int Value)
 		Log("I'm possessed! >:)");
 	}
 }
-
-//TODO: Implement this
