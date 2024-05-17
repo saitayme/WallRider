@@ -5,6 +5,7 @@
 
 #include "AEntity.h"
 #include "PlayerEntity.h"
+#include "Wallrider/MapClasses/Room.h"
 
 // Initialize the list of possible items
 const TArray<FString> AToken::ItemList = {"Flare", "Sound", "Fire"};
@@ -29,10 +30,14 @@ void AToken::Interacted(UObject* Other)
 	{
 		// Use the item
 		Use(PlayerEntity);
-		
-		// PlayerEntity->Score += this->GetValue();
 		// Then remove the token from the game
 		this->Destroy();
+	}
+	else if (const URoom* Room = Cast<URoom>(Other))
+	{
+		// Define what should happen when a token interacts with a room
+		// For example, log a message
+		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *this->GetName(), *Room->GetName());
 	}
 	else if (const AEntity* OtherEntity = Cast<AEntity>(Other))
 	{

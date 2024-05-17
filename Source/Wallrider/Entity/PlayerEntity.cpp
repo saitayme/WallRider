@@ -26,9 +26,8 @@ void APlayerEntity::Interacted(UObject* Other)
 		}
 		else if (AToken* Token = Cast<AToken>(Other))
 		{
-			// If the object is a Token, call its Interact method
-			// TODO fix the below line
-			// Token->Interact(this);
+			// If the object is a Token, call its Interacted method
+			Token->Interacted(this);
 		}
 	}
 }
