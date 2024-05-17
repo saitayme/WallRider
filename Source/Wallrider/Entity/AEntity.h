@@ -36,7 +36,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
 	int YLocation;
 
-	//EVENTS (also available in blueprints)
+	// Events (also available in blueprints)
 	
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPossessed, AEntity*, currentEntityRef);
 
@@ -52,7 +52,7 @@ public:
 	void BuffAction(const TMap<EActionType,int>& Buff);
 
 	// I think this was Martin's approach to use the UInteractable interface
-	// virtual void Interact(IInteractable* Other);
+	virtual void Interact(IInteractable* Other);
 
 	// This is Boris' approach to use the UInteractable interface
 	virtual void Interacted(UObject* Other);

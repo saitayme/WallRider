@@ -65,6 +65,17 @@ void AEntity::BuffAction(const TMap<EActionType, int>& Buff)
 	}
 }
 
+void AEntity::Interact(IInteractable* Other)
+{
+    if (Other != nullptr)
+    {
+    	if (AEntity* OtherEntity = Cast<AEntity>(Other))
+    	{
+    		OtherEntity->Interacted(this);
+    	}
+    }
+}
+
 // Boris' approach of using the UInteractable interface
 void AEntity::Interacted(UObject* Other)
 {
