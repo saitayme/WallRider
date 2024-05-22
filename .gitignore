@@ -72,5 +72,4 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
-WallRider/Saved/Autosaves/Game/InterfaceBP_Auto1.uasset
-WallRider/Saved/Autosaves/Game/InterfaceBP_Auto2.uasset
+
