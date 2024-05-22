@@ -82,7 +82,3 @@ ATile* ATile::Clone()
 	return nullptr;
 }
 
-void ATile::SetOnFire(bool onFire)
-{
-    this->IsOnFire = onFire; 
-}

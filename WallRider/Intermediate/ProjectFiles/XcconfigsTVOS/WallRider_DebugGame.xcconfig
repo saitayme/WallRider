@@ -1,8 +1,0 @@
-// pull in the shared settings for all configs for this target
-#include "WallRider.xcconfig"
-
-// Unreal per-config variables
-UE_TARGET_CONFIG = DebugGame
-UE_UBT_BINARY_SUBPATH = WallRider-TVOS-DebugGame
-UE_TVOS_EXECUTABLE_NAME = WallRider-TVOS-DebugGame
-PRODUCT_NAME = WallRider-TVOS-DebugGame
