@@ -1,54 +1,66 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EntityClasses/Entity.h" // Assuming Entity class exists
+#include "GameFramework/Actor.h"
+#include "../Entity/Entity.h" // Assuming Entity class exists
 #include <list> // For std::list
 #include <map> // For std::map
 #include <string> // For std::string
 #include <algorithm> // For std::find
+#include "../MapClasses/Room.h"
 
 enum class BorderType { None, Wall, Locked, LockedWall };
 enum class BehaviourType { Light, Fire, Sound, None };
 
-class WALLRIDER_API Tile
+UCLASS()
+class YOURGAME_API ATile : public AActor
 {
+    GENERATED_BODY()
+
 public:
-    Tile();
-    ~Tile();
+    ATile();
+    virtual ~ATile();
 
+    UFUNCTION(BlueprintCallable, Category="Tile")
     void ChangeCrums(float delta);
-    void AddEntity(Entity* entity);
-    void RemoveEntity(Entity* entity);
-    void SetEdgeLocked(const std::string& edge, bool locked);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void AddEntity(AEntity* entity);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void RemoveEntity(AEntity* entity);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void SetEdgeLocked(const FString& edge, bool locked);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
     void ChangeBehaviour(BehaviourType newBehaviour);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
     bool HasShadewalker() const;
-    Tile* Clone() const; // Implementing Clone method
 
-    // Adding public getter for CurrentEntities
-    const std::list<Entity*>& GetCurrentEntities() const { return CurrentEntities; }
-    // Adding public getter for Borders
-    std::map<std::string, BorderType> GetBorders() const { return Borders; }
-    void SetRoom(Room* newRoom) { this->room = newRoom; } // Fixed shadowing issue
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    ATile* Clone() const; // Implementing Clone method
 
-    // Implementing HasEntity method
-    bool HasEntity(Entity* entity) const {
-        return std::find(CurrentEntities.begin(), CurrentEntities.end(), entity) != CurrentEntities.end();
-    }
-
-    // Added GetEntity method
-    Entity* GetEntity() const {
-        if (!CurrentEntities.empty()) {
-            return *CurrentEntities.begin(); // Return the first entity
-        }
-        return nullptr; // Return nullptr if there are no entities
-    }
-
-private:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
     float CrumValue;
-    std::list<Entity*> CurrentEntities;
-    std::map<std::string, BorderType> Borders;
-    Room* room;
-    BehaviourType currentBehaviour = BehaviourType::None;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+    TArray<AEntity*> CurrentEntities;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+    TMap<FString, BorderType> Borders;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+    URoom* Room;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+    BehaviourType CurrentBehaviour;
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    bool HasEntity(AEntity* entity) const;
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    AEntity* GetEntity() const;
 };
+

@@ -1,46 +1,65 @@
 #include "Tile.h"
-
+#include "../Entity/Entity.h"
 #include "Room.h"
 
 // Parameters added as per instructions
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
 float CrumValue; // The crums are a float that need to be stored
-std::list<Entity*> CurrentEntities; // Who is on that Tile
-std::map<std::string, BorderType> Borders; // What edges of the Tile are walk through and which are not
-Room* room; // What room the tile is a part of
 
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+TArray<AEntity*> CurrentEntities; // Who is on that Tile
 
-Tile::Tile() : CrumValue(0), room(nullptr), currentBehaviour(BehaviourType::None)
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+TMap<FString, EBorderType> Borders; // What edges of the Tile are walk through and which are not
+
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
+URoom* Room; // What room the tile is a part of
+
+ATile::ATile() : CrumValue(0), Room(nullptr), CurrentBehaviour(EBehaviourType::None)
 {
+    PrimaryActorTick.bCanEverTick = false; // Disable ticking if not needed
 }
 
-Tile::~Tile()
+ATile::~ATile()
 {
 }
 
 //does what it says
-void Tile::ChangeCrums(float delta) {
-    CrumValue += delta;
-}
-//same here
-void Tile::AddEntity(Entity* entity) {
-    CurrentEntities.push_back(entity);
-}
-//if u dont get this ur stupid
-void Tile::RemoveEntity(Entity* entity) {
-    CurrentEntities.remove(entity);
-}
-//same here
-void Tile::SetEdgeLocked(const std::string& edge, bool locked) {
-    Borders[edge] = locked ? BorderType::Locked : BorderType::None; // use BorderType::None ??? idk man
-}
-// Changing behavior
-void Tile::ChangeBehaviour(BehaviourType newBehaviour) {
-    currentBehaviour = newBehaviour;
+void ATile::ChangeCrums(float Delta)
+{
+    CrumValue += Delta;
 }
 
-bool Tile::HasShadewalker() const {
-    for (const auto& entity : CurrentEntities) {
-        if (entity->IsShadewalker()) { 
+//same here
+void ATile::AddEntity(AEntity* Entity)
+{
+    CurrentEntities.Add(Entity);
+}
+
+//if u dont get this ur stupid
+void ATile::RemoveEntity(AEntity* Entity)
+{
+    CurrentEntities.Remove(Entity);
+}
+
+//same here
+void ATile::SetEdgeLocked(const FString& Edge, bool Locked)
+{
+    Borders.Add(Edge, Locked ? EBorderType::Locked : EBorderType::None);
+}
+
+// Changing behavior
+void ATile::ChangeBehaviour(EBehaviourType NewBehaviour)
+{
+    CurrentBehaviour = NewBehaviour;
+}
+
+bool ATile::HasShadewalker() const
+{
+    for (const AEntity* Entity : CurrentEntities)
+    {
+        if (Entity->IsShadewalker())
+        {
             return true;
         }
     }

@@ -1,33 +1,43 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EntityClasses/Entity.h" // Assuming Entity class exists
+#include "../Entity/Entity.h" // Assuming Entity class exists
 #include <functional> // For std::function
 #include <vector> // For std::vector
 
-enum class RoomType {
+UENUM(BlueprintType)
+enum class ERoomType : uint8 {
     Laboratory, Hallway, Control, Portal, QuantumBox, Security, Electrical, Surgery, Stim, Nothing, Breakroom, Kitchen, Crematorium, Armory
 };
 
-/**
- * 
- */
-class WALLRIDER_API Room
+UCLASS()
+class WALLRIDER_API URoom : public UObject
 {
-public:
-    Room(RoomType type); // Constructor now takes a RoomType
-    ~Room();
+    GENERATED_BODY()
 
-    void Use(Entity* entity, const std::string& instruction);
-    void AddEntity(Entity* entity);
-    void RemoveEntity(Entity* entity);
+public:
+    URoom(ERoomType Type); // Constructor now takes a RoomType
+    virtual ~URoom();
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void Use(AEntity* Entity, const FString& Instruction);
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void AddEntity(AEntity* Entity);
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void RemoveEntity(AEntity* Entity);
+
+    UFUNCTION(BlueprintCallable, Category="Room")
     void TriggerSabotage();
-    void SetRoomType(RoomType type); // Method to set the room type
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void SetRoomType(ERoomType Type); // Method to set the room type
 
 private:
-    std::vector<Entity*> Entities;
-    std::function<void(Entity*, const std::string&)> ActOnUse;
-    RoomType Type; // Added to store the room type
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Room", meta=(AllowPrivateAccess = "true"))
+    TArray<AEntity*> Entities;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Room", meta=(AllowPrivateAccess = "true"))
+    ERoomType Type; // Added to store the room type
 };

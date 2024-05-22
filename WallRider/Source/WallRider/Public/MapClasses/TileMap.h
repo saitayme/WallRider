@@ -1,34 +1,32 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Quadrant.h" // Include the Quadrant class
 #include "Tile.h" // Include the Tile class
 #include "Room.h" // Add this line at the top
-#include <vector> // Include support for std::vector
+#include "TileMap.generated.h"
 
-/**
- * 
- */
-class WALLRIDER_API TileMap
+UCLASS()
+class WALLRIDER_API UTileMap : public UObject
 {
-public:
-	TileMap();
-	~TileMap();
+    GENERATED_BODY()
 
-    std::vector<std::vector<Tile>> GetCurrentHeatMap();
-    void UpdateFields(std::vector<Tile*> tiles);
+public:
+    UTileMap();
+    virtual ~UTileMap();
+
+    TArray<TArray<ATile>> GetCurrentHeatMap();
+    void UpdateFields(TArray<ATile*> Tiles);
     void LockQuadrant(unsigned int QuadrantId);
     unsigned int GetShadewalkerQuadrant();
-    Tile* GetEntityTile(Entity* entity);
-    std::vector<std::vector<Tile>> DuplicateMap();
+    ATile* GetEntityTile(AEntity* Entity);
+    TArray<TArray<ATile>> DuplicateMap();
     void InitializeMap();
-    bool IsBlockedByWall(int x, int y);
-    static RoomType CharToRoomType(char c);
-    void FindSourceTilePosition(Entity* entity, int& sourceX, int& sourceY);
+    bool IsBlockedByWall(int X, int Y);
+    static ERoomType CharToRoomType(char C);
+    void FindSourceTilePosition(AEntity* Entity, int& SourceX, int& SourceY);
 
 private:
-    std::vector<std::vector<Tile>> Tiles;
-    std::vector<Quadrant*> Quadrants; // Collection of all quadrants
+    TArray<TArray<ATile>> Tiles;
+    TArray<UQuadrant*> Quadrants; // Collection of all quadrants
 };

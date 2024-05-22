@@ -1,15 +1,13 @@
 #include "Quadrant.h"
-#include "MapClasses/Tile.h"
+#include "../MapClasses/Tile.h"
 
-Quadrant::Quadrant(unsigned int QuadrantId, std::vector<Tile*> bounds) : QuadrantId(QuadrantId), bounds(bounds) {}
+UQuadrant::UQuadrant(unsigned int QuadrantId, TArray<ATile*> Bounds) : QuadrantId(QuadrantId), Bounds(Bounds) {}
 
-Quadrant::~Quadrant() {}
+UQuadrant::~UQuadrant() {}
 
-
-
-bool Quadrant::CheckIfShadewalkerPresent() {
-    for (Tile* tile : bounds) {
-        if (tile->HasShadewalker()) { 
+bool UQuadrant::CheckIfShadewalkerPresent() const {
+    for (ATile* Tile : Bounds) {
+        if (Tile->HasShadewalker()) { 
             return true;
         }
     }

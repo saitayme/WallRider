@@ -1,22 +1,31 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tile.h" // Include the Tile class
-#include <vector> // Include support for std::vector
+#include "Tile.h" // Adjust the include path as necessary
+#include "Quadrant.generated.h"
 
-class WALLRIDER_API Quadrant
+UCLASS()
+class WALLRIDER_API UQuadrant : public UObject
 {
-public:
-    Quadrant(unsigned int QuadrantId, std::vector<Tile*> bounds);
-    ~Quadrant();
+    GENERATED_BODY()
 
+public:
+    UQuadrant();
+    virtual ~UQuadrant();
+
+    UFUNCTION(BlueprintCallable, Category="Quadrant")
     void LockQuadrant();
-    bool CheckIfShadewalkerPresent();
-    unsigned int GetQuadrantId() const { return QuadrantId; } // Added GetQuadrantId method
+
+    UFUNCTION(BlueprintCallable, Category="Quadrant")
+    bool CheckIfShadewalkerPresent() const;
+
+    UFUNCTION(BlueprintCallable, Category="Quadrant")
+    unsigned int GetQuadrantId() const { return QuadrantId; }
 
 private:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Quadrant", meta=(AllowPrivateAccess = "true"))
     unsigned int QuadrantId;
-    std::vector<Tile*> bounds;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Quadrant", meta=(AllowPrivateAccess = "true"))
+    TArray<ATile*> Bounds;
 };
