@@ -35,3 +35,19 @@ void URoom::Interacted(UObject* Other)
 void URoom::Investigated(UObject* Other)
 {
 }
+
+void URoom::ActivateAbilityManually()
+{
+	ActivateAbility();
+}
+
+ATile* URoom::GetRandomTile()
+{
+    int32 RandomIndex = FMath::RandRange(0, Tiles.Num() - 1);
+    return Tiles[RandomIndex]; // Assuming Tiles is an array of tile pointers
+}
+
+TArray<ATile*> URoom::GetAllTiles()
+{
+    return Tiles; // Assuming Tiles is an array of tile pointers
+}
