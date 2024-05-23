@@ -12,13 +12,24 @@ AEntity::AEntity()
 	  Faction(EFactionType::Neutral),
 	  XLocation(0),
 	  YLocation(0),
-	  xIndex(0),
-	  yIndex(0),
-	  CurrentActionCount(2),
+	  BaseActionBuffs{
+		  {EActionType::Interact, 0},
+		  {EActionType::Move, 0},
+		  {EActionType::Investigate, 0},
+		  {EActionType::Pass, 0},
+		  {EActionType::Delay, 0}
+	  },
+	  XIndex(0),
+	  YIndex(0),
+	  CurrentActionCount(0),
 	  CurrentHP(0)
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+
+	CurrentActionBuffs = BaseActionBuffs;
+	CurrentActionCount = MaxActionCount;
+	CurrentHP = MaxHP;
 }
 
 // Called when the game starts or when spawned
@@ -43,49 +54,30 @@ void AEntity::BuffAction(const TMap<EActionType, int>& Buff)
 	// Iterate over the Buff map
 	for (const auto& Pair : Buff)
 	{
-		// Depending on the ActionType, apply the buff
-		switch (Pair.Key)
-		{
-		case EActionType::Interact:
-			MaxActionCount += Pair.Value;
-			break;
-		case EActionType::Move:
-			MaxHP += Pair.Value;
-			break;
-		case EActionType::Investigate:
-			// Apply buff to Investigate action
-			break;
-		case EActionType::Pass:
-			// Apply buff to Pass action
-			break;
-		case EActionType::Delay:
-			// Apply buff to Delay action
-			break;
-		}
+		// Increment the corresponding action type in the ActionBuffs map
+		CurrentActionBuffs[Pair.Key] += Pair.Value;
 	}
 }
 
 void AEntity::Interact(IInteractable* Other)
 {
-    if (Other != nullptr)
-    {
-    	if (AEntity* OtherEntity = Cast<AEntity>(Other))
-    	{
-    		OtherEntity->Interacted(this);
-    	}
-    }
-}
-
-// Boris' approach of using the UInteractable interface
-void AEntity::Interacted(UObject* Other)
-{
-	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
+	if (Other != nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *OtherEntity->GetName(), *this->GetName());
+		if (AEntity* OtherEntity = Cast<AEntity>(Other))
+		{
+			OtherEntity->Interacted(this);
+		}
 	}
 }
 
-// Boris' approach of using the UInteractable interface
+void AEntity::Interacted(AEntity* Other)
+{
+	if (Other != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *Other->GetName(), *this->GetName());
+	}
+}
+
 void AEntity::Investigated(UObject* Other)
 {
 	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
@@ -94,16 +86,7 @@ void AEntity::Investigated(UObject* Other)
 	}
 }
 
-/* Martin's approach of using the UInteractable interface
-void AEntity::Interact(IInteractable* Other)
-{
-	if (Other != nullptr)
-	{
-		Other->Interacted(this);
-	}
-}*/
-
-void AEntity::Move(int Direction)
+void AEntity::Move(const int Direction)
 {
 	// Depending on the Direction, move the entity
 	switch (Direction)
@@ -128,15 +111,12 @@ void AEntity::Move(int Direction)
 
 void AEntity::OnNextRound()
 {
-	// Reset the CurrentActionCount to MaxActionCount
 	CurrentActionCount = MaxActionCount;
-
-	// Set CurrentHP to MaxHP
-	CurrentHP = MaxHP;
+	CurrentActionBuffs = BaseActionBuffs;
 
 	// Log a message indicating the start of a new round
-	FString roundStartMessage = FString::Printf(TEXT("A new round has started for %s"), *this->GetName());
-	Log(roundStartMessage);
+	const FString RoundStartMessage = FString::Printf(TEXT("A new round has started for %s"), *this->GetName());
+	Log(RoundStartMessage);
 }
 
 void AEntity::OnTurnStart(AEntity* Entity)
@@ -147,7 +127,7 @@ void AEntity::OnTurnStart(AEntity* Entity)
 	}
 }
 
-void AEntity::Log(const FString& s)
+void AEntity::Log(const FString& S)
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s - %s: %s"), *this->GetClass()->GetName(), *this->GetName(), *s);
+	UE_LOG(LogTemp, Warning, TEXT("%s - %s: %s"), *this->GetClass()->GetName(), *this->GetName(), *S);
 }

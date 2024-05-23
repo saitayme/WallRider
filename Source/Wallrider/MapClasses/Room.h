@@ -13,7 +13,9 @@
  * 
  */
 UCLASS()
-class WALLRIDER_API URoom : public UObject, public IInteractable
+class WALLRIDER_API URoom : public UObject
+// Commented out to test forward declaration
+// class WALLRIDER_API URoom : public UObject, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -42,8 +44,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void RemoveEntity(FString EntityId);
 
-	virtual void Interacted(UObject* Other) override;
-	virtual void Investigated(UObject* Other) override;
+	// Commented out to test forward declaration
+	// virtual void Interacted(UObject* Other) override;
+	// virtual void Investigated(UObject* Other) override;
 
 private:
 

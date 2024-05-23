@@ -16,8 +16,8 @@ public:
 	// Sets default values for this actor's properties
 	APlayerEntity();
 
-	virtual void Interacted(UObject* Other) override;
-	virtual void Investigated(UObject* Other) override;
+	virtual void Interacted(AEntity* Other) override;
+	virtual void Investigated(AEntity* Other) override;
 
 	virtual void Damage(const int Value) override;
 

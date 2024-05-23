@@ -29,8 +29,8 @@ public:
 
 	// Functions
 	
-	virtual void Interacted(UObject* Other) override;
-	virtual void Investigated(UObject* Other) override;
+	virtual void Interacted(AEntity* Other) override;
+	virtual void Investigated(AEntity* Other) override;
 
 protected:
 	// Called when the game starts or when spawned

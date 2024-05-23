@@ -24,28 +24,26 @@ AToken::AToken()
 	Item = ItemList[Index];
 }
 
-void AToken::Interacted(UObject* Other)
+void AToken::Interacted(AEntity* Other)
 {
-	if (APlayerEntity* PlayerEntity = Cast<APlayerEntity>(Other))
-	{
-		// Use the item
-		Use(PlayerEntity);
-		// Then remove the token from the game
-		this->Destroy();
-	}
-	else if (const URoom* Room = Cast<URoom>(Other))
+	// Use the item
+	Use(Cast<APlayerEntity>(Other));
+	// Then remove the token from the game
+	this->Destroy();
+
+	if (const URoom* Room = Cast<URoom>(Other))
 	{
 		// Define what should happen when a token interacts with a room
 		// For example, log a message
 		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *this->GetName(), *Room->GetName());
 	}
-	else if (const AEntity* OtherEntity = Cast<AEntity>(Other))
+	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *OtherEntity->GetName(), *this->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *Other->GetName(), *this->GetName());
 	}
 }
 
-void AToken::Investigated(UObject* Other)
+void AToken::Investigated(AEntity* Other)
 {
 	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
 	{

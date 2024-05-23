@@ -2,6 +2,8 @@
 
 #include "UInteractable.generated.h"
 
+class AEntity;
+
 UINTERFACE()
 class UInteractable : public UInterface
 {
@@ -12,6 +14,6 @@ class IInteractable
 {
 	GENERATED_BODY()
 
-	virtual void Interacted(UObject* Other) = 0;
-	virtual void Investigated(UObject* Other) = 0;
+	virtual void Interacted(AEntity* Other) = 0;
+	virtual void Investigated(AEntity* Other) = 0;
 };

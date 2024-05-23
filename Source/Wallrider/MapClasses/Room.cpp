@@ -28,10 +28,12 @@ void URoom::RemoveEntity(FString EntityId)
 	}
 }
 
-void URoom::Interacted(UObject* Other)
-{
-}
+// Commented out to test forward declaration
+// void URoom::Interacted(UObject* Other)
+// {
+// }
 
-void URoom::Investigated(UObject* Other)
-{
-}
+// Commented out to test forward declaration
+// void URoom::Investigated(UObject* Other)
+// {
+// }

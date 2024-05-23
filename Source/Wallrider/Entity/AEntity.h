@@ -42,38 +42,37 @@ public:
 
 	UPROPERTY(BlueprintAssignable, EditAnywhere, Category="Actions")
 	FOnPossessed OnPossessed;
-
-
-
+	
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	virtual void Damage(const int Value);
+	
+	const TMap<EActionType, int> BaseActionBuffs;
+
+	
+	TMap<EActionType, int> CurrentActionBuffs;
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
-	void BuffAction(const TMap<EActionType,int>& Buff);
+	void BuffAction(const TMap<EActionType, int>& Buff);
 
-	// I think this was Martin's approach to use the UInteractable interface
 	virtual void Interact(IInteractable* Other);
 
-	// This is Boris' approach to use the UInteractable interface
-	virtual void Interacted(UObject* Other);
+	virtual void Interacted(AEntity* Other);
 	virtual void Investigated(UObject* Other);
 	
 	virtual void Move(int Direction);
 	
-	
-
 	UFUNCTION(BlueprintCallable, Category="Logging")
-	void Log(const FString& s);
+	void Log(const FString& S);
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	int xIndex;
+	int XIndex;
 
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	int yIndex;
+	int YIndex;
 
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
 	int CurrentActionCount;

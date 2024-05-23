@@ -6,22 +6,23 @@
 #include "AShadeWalker.generated.h"
 
 UCLASS()
-class WALLRIDER_API AShadeWalker : public AEntity
+class WALLRIDER_API AShadeWalker : public AEntity, public IInteractable
 {
- GENERATED_BODY()
+	GENERATED_BODY()
 
 public:
- // Sets default values for this actor's properties
- AShadeWalker();
+	// Sets default values for this actor's properties
+	AShadeWalker();
 
 protected:
- // Called when the game starts or when spawned
- virtual void BeginPlay() override;
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 public:
- // Called every frame
- virtual void Tick(float DeltaTime) override;
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
- // Override the Interacted function
- virtual void Interacted(UObject* Other) override;
+	// Override the Interacted function
+	virtual void Interacted(AEntity* Other) override;
+	virtual void Investigated(AEntity* Other) override;
 };

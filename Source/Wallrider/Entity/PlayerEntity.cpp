@@ -11,9 +11,11 @@ APlayerEntity::APlayerEntity()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+	
+	Faction = EFactionType::Player;
 }
 
-void APlayerEntity::Interacted(UObject* Other)
+void APlayerEntity::Interacted(AEntity* Other)
 {
 	// Super::Interacted(Other);
 
@@ -32,7 +34,7 @@ void APlayerEntity::Interacted(UObject* Other)
 	}
 }
 
-void APlayerEntity::Investigated(UObject* Other)
+void APlayerEntity::Investigated(AEntity* Other)
 {
 	Super::Investigated(Other);
 }
