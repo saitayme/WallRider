@@ -82,10 +82,3 @@ ATile* ATile::Clone()
 	return nullptr;
 }
 
-<<<<<<< HEAD
-=======
-void ATile::SetOnFire(bool onFire)
-{
-    this->IsOnFire = onFire; 
-}
->>>>>>> JulsDev
