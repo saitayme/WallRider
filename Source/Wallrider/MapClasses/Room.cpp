@@ -35,6 +35,8 @@ void URoom::Interacted(UObject* Other)
 void URoom::Investigated(UObject* Other)
 {
 }
+<<<<<<< HEAD
+=======
 
 void URoom::ActivateAbilityManually()
 {
@@ -51,3 +53,4 @@ TArray<ATile*> URoom::GetAllTiles()
 {
     return Tiles; // Assuming Tiles is an array of tile pointers
 }
+>>>>>>> JulsDev
