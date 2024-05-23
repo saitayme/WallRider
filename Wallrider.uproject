@@ -5,7 +5,11 @@
 	"Description": "",
 	"Modules": [
 		{
+<<<<<<< HEAD:Wallrider.uproject
 			"Name": "Wallrider",
+=======
+			"Name": "WallRider",
+>>>>>>> JulsDev:WallRider/WallRider.uproject
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}

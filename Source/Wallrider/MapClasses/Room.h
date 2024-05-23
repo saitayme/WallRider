@@ -42,6 +42,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void RemoveEntity(FString EntityId);
 
+<<<<<<< HEAD
+=======
+	UFUNCTION(BlueprintCallable, Category="Abilities")
+	void ActivateAbilityManually();
+
+>>>>>>> JulsDev
 	virtual void Interacted(UObject* Other) override;
 	virtual void Investigated(UObject* Other) override;
 
