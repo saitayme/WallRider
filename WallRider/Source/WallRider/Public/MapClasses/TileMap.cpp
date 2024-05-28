@@ -58,7 +58,7 @@ bool UTileMap::IsBlockedByWall(int x, int y) {
     ATile* tile = Tiles[x][y];
     // Example logic to check if any border of the tile is not walkable
     for (auto const& border : tile->GetBorders()) {
-        if (border.Value == BorderType::Locked) {
+        if (border.Value == EBorderType::Locked) {
             return true;
         }
     }

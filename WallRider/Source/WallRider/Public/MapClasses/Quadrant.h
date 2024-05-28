@@ -10,7 +10,7 @@ class WALLRIDER_API UQuadrant : public UObject
     GENERATED_BODY()
 
 public:
-    UQuadrant();
+    UQuadrant(unsigned int QuadrantId, TArray<ATile*> Bounds);
     virtual ~UQuadrant();
 
     UFUNCTION(BlueprintCallable, Category="Quadrant")

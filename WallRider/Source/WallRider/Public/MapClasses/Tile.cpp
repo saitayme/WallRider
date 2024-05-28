@@ -39,7 +39,7 @@ void ATile::AddEntity(AEntity* Entity)
 //if u dont get this ur stupid
 void ATile::RemoveEntity(AEntity* Entity)
 {
-    CurrentEntities.Remove(Entity);
+    CurrentEntities.RemoveSingle(Entity);
 }
 
 //same here

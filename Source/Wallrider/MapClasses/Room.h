@@ -25,7 +25,8 @@ public:
 	//UPROPERTY(BlueprintReadWrite, Category="Stats")
 	//UDelegateFunction ActOnUse;
 
-	
+	// Add a public getter for Entities
+    const TMap<FString, AEntity*>& GetEntities() const { return Entities; }
 
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void Use(AEntity* Entity, const FString Instructions);

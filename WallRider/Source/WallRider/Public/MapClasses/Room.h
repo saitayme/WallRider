@@ -35,9 +35,7 @@ public:
     void SetRoomType(ERoomType Type); // Method to set the room type
 
 private:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Room", meta=(AllowPrivateAccess = "true"))
     TArray<AEntity*> Entities;
-
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Room", meta=(AllowPrivateAccess = "true"))
+    TFunction<void(AEntity*, const FString&)> ActOnUse;
     ERoomType Type; // Added to store the room type
 };

@@ -3,7 +3,7 @@
 #include "RoomAbilities.h"
 #include "Room.h"
 
-void RoomAbilities::ActivateAbility(URoom* Room)
+void ARoomAbilities::ActivateAbility(URoom* Room)
 {
     switch (Room->RoomType)
     {
@@ -51,32 +51,32 @@ void RoomAbilities::ActivateAbility(URoom* Room)
     }
 }
 
-void RoomAbilities::ActivateLaboratory(URoom* Room)
+void ARoomAbilities::ActivateLaboratory(URoom* Room)
 {
     // Future implementation
 }
 
-void RoomAbilities::ActivateControl(URoom* Room)
+void ARoomAbilities::ActivateControl(URoom* Room)
 {
     // Future implementation
 }
 
 
-void RoomAbilities::ActivateQuantumBox(URoom* Room) {}
-void RoomAbilities::ActivateSecurity(URoom* Room) {}
-void RoomAbilities::ActivateElectrical(URoom* Room) {}
-void RoomAbilities::ActivateSurgery(URoom* Room) {}
-void RoomAbilities::ActivateStim(URoom* Room) {}
-void RoomAbilities::ActivateBreakroom(URoom* Room) {}
-void RoomAbilities::ActivateKitchen(URoom* Room) {}
-void RoomAbilities::ActivateArmory(URoom* Room) {}
+void ARoomAbilities::ActivateQuantumBox(URoom* Room) {}
+void ARoomAbilities::ActivateSecurity(URoom* Room) {}
+void ARoomAbilities::ActivateElectrical(URoom* Room) {}
+void ARoomAbilities::ActivateSurgery(URoom* Room) {}
+void ARoomAbilities::ActivateStim(URoom* Room) {}
+void ARoomAbilities::ActivateBreakroom(URoom* Room) {}
+void ARoomAbilities::ActivateKitchen(URoom* Room) {}
+void ARoomAbilities::ActivateArmory(URoom* Room) {}
 
-void RoomAbilities::ActivatePortal(URoom* Room)
+void ARoomAbilities::ActivatePortal(URoom* Room)
 {
-    if (Room->Entities.Num() == 0) return; // No entities in the room to teleport
+    if (Room->GetEntities().Num() == 0) return; // No entities in the room to teleport
 
     // Get a random entity (assuming it's a player for simplicity)
-    AEntity* Entity = Room->Entities.Array()[0]; // Get the first entity
+    AEntity* Entity = Room->GetEntities().Array()[0].Value; // Correctly access the first entity
 
     // Find a random room that is not the current one
     URoom* TargetRoom = nullptr;
@@ -92,7 +92,7 @@ void RoomAbilities::ActivatePortal(URoom* Room)
     Entity->SetLocation(TargetTile->GetLocation());
 }
 
-void RoomAbilities::ActivateCrematorium(URoom* Room)
+void ARoomAbilities::ActivateCrematorium(URoom* Room)
 {
     for (ATile* Tile : Room->GetAllTiles())
     {
