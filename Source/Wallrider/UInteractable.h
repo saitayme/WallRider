@@ -2,6 +2,8 @@
 
 #include "UInteractable.generated.h"
 
+enum class EFactionType : uint8;
+
 UINTERFACE()
 class UInteractable : public UInterface
 {
@@ -13,5 +15,5 @@ class IInteractable
 	GENERATED_BODY()
 
 	virtual void Interacted(UObject* Other) = 0;
-	virtual void Investigated(UObject* Other) = 0;
+	virtual EFactionType Investigated(UObject* Other) = 0;
 };

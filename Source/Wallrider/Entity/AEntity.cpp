@@ -86,12 +86,13 @@ void AEntity::Interacted(UObject* Other)
 }
 
 // Boris' approach of using the UInteractable interface
-void AEntity::Investigated(UObject* Other)
+EFactionType AEntity::Investigated(UObject* Other)
 {
 	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("%s investigated %s"), *OtherEntity->GetName(), *this->GetName());
 	}
+	return EFactionType::Neutral;
 }
 
 /* Martin's approach of using the UInteractable interface

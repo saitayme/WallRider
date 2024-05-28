@@ -32,9 +32,10 @@ void APlayerEntity::Interacted(UObject* Other)
 	}
 }
 
-void APlayerEntity::Investigated(UObject* Other)
+EFactionType APlayerEntity::Investigated(UObject* Other)
 {
 	Super::Investigated(Other);
+	return EFactionType::Neutral;
 }
 
 // Called when the game starts or when spawned
