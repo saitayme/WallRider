@@ -2,6 +2,9 @@
 
 #include "RoomAbilities.h"
 #include "Room.h"
+#include "Tile.h" // Include this at the top of the file
+
+TArray<URoom*> ARoomAbilities::AllRooms;
 
 void ARoomAbilities::ActivateAbility(URoom* Room)
 {
@@ -61,6 +64,9 @@ void ARoomAbilities::ActivateControl(URoom* Room)
     // Future implementation
 }
 
+void ARoomAbilities::ActivateHallway(URoom* Room) {
+    // Implementation needed
+}
 
 void ARoomAbilities::ActivateQuantumBox(URoom* Room) {}
 void ARoomAbilities::ActivateSecurity(URoom* Room) {}

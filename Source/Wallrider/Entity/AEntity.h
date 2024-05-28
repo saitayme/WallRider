@@ -60,7 +60,7 @@ public:
 	
 	virtual void Move(int Direction);
 	
-	
+	void SetLocation(FVector NewLocation); // Declaration
 
 	UFUNCTION(BlueprintCallable, Category="Logging")
 	void Log(const FString& s);

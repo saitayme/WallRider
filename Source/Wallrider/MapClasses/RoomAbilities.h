@@ -11,6 +11,7 @@ class WALLRIDER_API ARoomAbilities : public AActor
     GENERATED_BODY()
 
 public:
+    void ActivateAbility(URoom* Room); // Ensure this matches the definition
     static void ActivateLaboratory(URoom* Room);
     static void ActivateControl(URoom* Room);
     static void ActivatePortal(URoom* Room);
@@ -23,5 +24,10 @@ public:
     static void ActivateKitchen(URoom* Room);
     static void ActivateCrematorium(URoom* Room);
     static void ActivateArmory(URoom* Room);
+    static void ActivateHallway(URoom* Room);
+    static TArray<URoom*> AllRooms;
 };
+    // Add declarations for other room types
+    // Add declarations for other room types
+    // Add declarations for other room types
     // Add declarations for other room types

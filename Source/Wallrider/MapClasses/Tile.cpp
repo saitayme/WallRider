@@ -1,6 +1,7 @@
 ﻿// In case Unreal deletes pointers we still want to use
 
 #include "Tile.h"
+#include "Room.h"  // Include Room.h here for full definition
 
 #include "MapEnums.h"
 #include "WallRider/Entity/AEntity.h"
@@ -82,3 +83,11 @@ ATile* ATile::Clone()
 	return nullptr;
 }
 
+FVector ATile::GetLocation() {
+    // Return the location of the tile
+    return FVector(); // Placeholder
+}
+
+void ATile::SetOnFire(bool bIsOnFire) {
+    // Set the tile on fire
+}

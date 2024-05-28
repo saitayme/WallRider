@@ -9,6 +9,9 @@
 #include "WallRider/Entity/AEntity.h"
 #include "Room.generated.h"
 
+// Forward declaration to resolve circular dependency
+class ATile;
+
 /**
  * 
  */
@@ -45,6 +48,9 @@ public:
 
 	virtual void Interacted(UObject* Other) override;
 	virtual void Investigated(UObject* Other) override;
+
+	ATile* GetRandomTile();
+	TArray<ATile*> GetAllTiles();
 
 private:
 

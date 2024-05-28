@@ -9,13 +9,23 @@
   <component name="ChangeListManager">
     <list default="true" id="fa90e9e1-6b17-401d-ae0d-eea3124f396b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Wallrider.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Wallrider.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Wallrider/Entity/AEntity.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/Entity/AEntity.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Wallrider/Entity/AEntity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/Entity/AEntity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Room.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Room.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Room.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Room.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/RoomAbilities.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/RoomAbilities.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/RoomAbilities.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/RoomAbilities.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/Wallrider/MapClasses/RoomAbilities.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Wallrider/MapClasses/RoomAbilities.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -174,7 +184,8 @@
       <workItem from="1716457968388" duration="5000" />
       <workItem from="1716457990482" duration="34000" />
       <workItem from="1716460941128" duration="596000" />
-      <workItem from="1716909505493" duration="475000" />
+      <workItem from="1716909505493" duration="1075000" />
+      <workItem from="1716910681957" duration="425000" />
     </task>
     <servers />
   </component>

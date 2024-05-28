@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MapEnums.h"
-#include "Room.h"
+#include "Room.h" // Include Room.h here if ATile needs to interact with URoom
 #include "GameFramework/Actor.h"
 #include "Tile.generated.h"
 
@@ -38,6 +38,9 @@ public:
 	void SetRoom(URoom* Room);
 	
 	float GetCrumValue();
+
+	FVector GetLocation();
+	void SetOnFire(bool bIsOnFire);
 
 protected:
 	// Called when the game starts or when spawned

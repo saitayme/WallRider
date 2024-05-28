@@ -125,6 +125,9 @@ void AEntity::Move(int Direction)
 	}
 }
 
+void AEntity::SetLocation(FVector NewLocation) {
+    // Implementation
+}
 
 void AEntity::OnNextRound()
 {
