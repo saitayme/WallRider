@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "AEntity.h"
-#include "PlayerEntity.generated.h"
+#include "APlayerEntity.generated.h"
 
 	
 UCLASS()
-class WALLRIDER_API APlayerEntity : public AEntity, public IInteractable
+class WALLRIDER_API APlayerEntity : public AEntity
 {
 	GENERATED_BODY()
 

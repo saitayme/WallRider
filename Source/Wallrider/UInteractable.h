@@ -14,6 +14,7 @@ class IInteractable
 {
 	GENERATED_BODY()
 
+public:
 	virtual void Interacted(AEntity* Other) = 0;
 	virtual void Investigated(AEntity* Other) = 0;
 };

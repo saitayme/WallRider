@@ -3,6 +3,7 @@
 
 AShadeWalker::AShadeWalker()
 {
+	// Override Member variables from AEntity
 	MaxActionCount = 3;
 	MaxHP = 1;
 	Faction = EFactionType::ShadeWalker;

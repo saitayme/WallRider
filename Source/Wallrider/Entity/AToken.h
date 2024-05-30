@@ -3,29 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PlayerEntity.h"
-#include "Wallrider/UInteractable.h"
+#include "APlayerEntity.h"
 #include "GameFramework/Actor.h"
-#include "Wallrider/Entity/FactionType.h"
 #include "AToken.generated.h"
 
 UCLASS()
-class WALLRIDER_API AToken : public AActor, public IInteractable
+class WALLRIDER_API AToken : public AEntity
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
 	AToken();
-	
-	UPROPERTY(BlueprintReadWrite, Category="Stats")
-	EFactionType Faction;
-
-	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	int XLocation;
-
-	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	int YLocation;
 
 	// Functions
 	

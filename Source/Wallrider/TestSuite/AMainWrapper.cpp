@@ -1,5 +1,5 @@
 #include "AMainWrapper.h"
-#include "../Entity/PlayerEntity.h"
+#include "../Entity/APlayerEntity.h"
 
 // Sets default values
 AMainWrapper::AMainWrapper()

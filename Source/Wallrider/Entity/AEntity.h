@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FactionType.h"
+#include "EFactionType.h"
 #include "GameFramework/Actor.h"
 #include "Wallrider/UInteractable.h"
-#include "WallRider/Action/ActionType.h"
+#include "WallRider/Action/EActionType.h"
 #include "AEntity.generated.h"
 
 UCLASS()
-class WALLRIDER_API AEntity : public AActor
+class WALLRIDER_API AEntity : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 
@@ -54,10 +54,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void BuffAction(const TMap<EActionType, int>& Buff);
 
-	virtual void Interact(IInteractable* Other);
+	UFUNCTION(BlueprintCallable, Category="Stats")
+	virtual void Interact(TScriptInterface<IInteractable> Other);
 
-	virtual void Interacted(AEntity* Other);
-	virtual void Investigated(UObject* Other);
+	virtual void Interacted(AEntity* Other) override;
+	virtual void Investigated(AEntity* Other) override;
 	
 	virtual void Move(int Direction);
 	

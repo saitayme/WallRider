@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "FactionType.generated.h"
-
-
+#include "EFactionType.generated.h"
 
 UENUM(BlueprintType)
 enum class EFactionType : uint8

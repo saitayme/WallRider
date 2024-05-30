@@ -1,7 +1,7 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "PlayerEntity.h"
+#include "APlayerEntity.h"
 
 #include "AShadeWalker.h"
 #include "AToken.h"
@@ -11,8 +11,11 @@ APlayerEntity::APlayerEntity()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-	
+
+	// Override Member variables from AEntity
 	Faction = EFactionType::Player;
+	XLocation = 4;
+	YLocation = 4;
 }
 
 void APlayerEntity::Interacted(AEntity* Other)
@@ -21,6 +24,7 @@ void APlayerEntity::Interacted(AEntity* Other)
 
 	if (Other != nullptr)
 	{
+		// if other == player then deal damage
 		if (AShadeWalker* ShadeWalker = Cast<AShadeWalker>(Other))
 		{
 			// If the object is a ShadeWalker, call its Interact method

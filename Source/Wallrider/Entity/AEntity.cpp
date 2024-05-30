@@ -37,10 +37,11 @@ void AEntity::BeginPlay()
 {
 	Super::BeginPlay();
 
-	::AGameController* GameController = static_cast<AGameController*>(GetWorld()->GetAuthGameMode());
+	/*commented out for testing purposes
+	AGameController* GameController = static_cast<AGameController*>(GetWorld()->GetAuthGameMode());
 
 	GameController->OnNextRound.AddDynamic(this, &AEntity::OnNextRound);
-	GameController->OnNextTurn.AddDynamic(this, &AEntity::OnTurnStart);
+	GameController->OnNextTurn.AddDynamic(this, &AEntity::OnTurnStart);*/
 }
 
 void AEntity::Damage(const int Value)
@@ -59,30 +60,30 @@ void AEntity::BuffAction(const TMap<EActionType, int>& Buff)
 	}
 }
 
-void AEntity::Interact(IInteractable* Other)
+void AEntity::Interact(const TScriptInterface<IInteractable> Other)
 {
 	if (Other != nullptr)
 	{
-		if (AEntity* OtherEntity = Cast<AEntity>(Other))
+		if (IInteractable* InteractableObject = Cast<IInteractable>(Other.GetObject()))
 		{
-			OtherEntity->Interacted(this);
+			InteractableObject->Interacted(this);
 		}
 	}
 }
 
 void AEntity::Interacted(AEntity* Other)
 {
-	if (Other != nullptr)
+	if (Other)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("%s interacted with %s"), *Other->GetName(), *this->GetName());
 	}
 }
 
-void AEntity::Investigated(UObject* Other)
+void AEntity::Investigated(AEntity* Other)
 {
-	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
+	if (Other)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s investigated %s"), *OtherEntity->GetName(), *this->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("%s investigated %s"), *Other->GetName(), *this->GetName());
 	}
 }
 

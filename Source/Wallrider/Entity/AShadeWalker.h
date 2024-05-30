@@ -6,7 +6,7 @@
 #include "AShadeWalker.generated.h"
 
 UCLASS()
-class WALLRIDER_API AShadeWalker : public AEntity, public IInteractable
+class WALLRIDER_API AShadeWalker : public AEntity
 {
 	GENERATED_BODY()
 
