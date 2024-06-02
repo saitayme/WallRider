@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FactionType.h"
+#include "EFactionType.h"
 #include "GameFramework/Actor.h"
 #include "Wallrider/UInteractable.h"
-#include "WallRider/Action/ActionType.h"
+#include "WallRider/Action/EActionType.h"
 #include "AEntity.generated.h"
 
 UCLASS()
-class WALLRIDER_API AEntity : public AActor
+class WALLRIDER_API AEntity : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 
@@ -42,38 +42,38 @@ public:
 
 	UPROPERTY(BlueprintAssignable, EditAnywhere, Category="Actions")
 	FOnPossessed OnPossessed;
-
-
-
+	
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	virtual void Damage(const int Value);
+	
+	const TMap<EActionType, int> BaseActionBuffs;
+
+	
+	TMap<EActionType, int> CurrentActionBuffs;
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
-	void BuffAction(const TMap<EActionType,int>& Buff);
+	void BuffAction(const TMap<EActionType, int>& Buff);
 
-	// I think this was Martin's approach to use the UInteractable interface
-	virtual void Interact(IInteractable* Other);
+	UFUNCTION(BlueprintCallable, Category="Stats")
+	virtual void Interact(TScriptInterface<IInteractable> Other);
 
-	// This is Boris' approach to use the UInteractable interface
-	virtual void Interacted(UObject* Other);
-	virtual EFactionType Investigated(UObject* Other);
+	virtual void Interacted(AEntity* Other) override;
+	virtual void Investigated(AEntity* Other) override;
 	
 	virtual void Move(int Direction);
 	
-	
-
 	UFUNCTION(BlueprintCallable, Category="Logging")
-	void Log(const FString& s);
+	void Log(const FString& S);
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	int xIndex;
+	int XIndex;
 
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	int yIndex;
+	int YIndex;
 
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
 	int CurrentActionCount;

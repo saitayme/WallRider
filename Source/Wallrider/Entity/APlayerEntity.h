@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "AEntity.h"
-#include "PlayerEntity.generated.h"
+#include "APlayerEntity.generated.h"
 
 	
 UCLASS()
-class WALLRIDER_API APlayerEntity : public AEntity, public IInteractable
+class WALLRIDER_API APlayerEntity : public AEntity
 {
 	GENERATED_BODY()
 
@@ -16,8 +16,8 @@ public:
 	// Sets default values for this actor's properties
 	APlayerEntity();
 
-	virtual void Interacted(UObject* Other) override;
-	virtual EFactionType Investigated(UObject* Other) override;
+	virtual void Interacted(AEntity* Other) override;
+	virtual void Investigated(AEntity* Other) override;
 
 	virtual void Damage(const int Value) override;
 

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "ActionType.generated.h"
+#include "EActionType.generated.h"
 
 
 UENUM(BlueprintType)

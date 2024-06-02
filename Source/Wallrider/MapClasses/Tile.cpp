@@ -4,7 +4,7 @@
 
 #include "MapEnums.h"
 #include "WallRider/Entity/AEntity.h"
-#include "WallRider/Entity/FactionType.h"
+#include "WallRider/Entity/EFactionType.h"
 
 
 // Sets default values
