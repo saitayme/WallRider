@@ -18,21 +18,30 @@ public:
 	// Sets default values for this actor's properties
 	ABoard();
 
-	TArray<ATile> GetCurrentTiles();
-
+	TArray<ATile*> GetCurrentTiles();
+	
 	void UpdateTileCrums(TArray<float> crumPattern);
-
+	
 	void LockQuadrant(uint16 QuadrantId);
-
+	
 	uint16 GetQuadrantIdWithShadeWalker();
-
+	
 	ATile* GetTileWithEntity(AEntity* entity);
-
-	static ATile* GetTile(int xLocation, int yLocation);
-
+	
+	ATile* GetTile(int xLocation, int yLocation);
+	
 	static ATile* GetAdjacentTile(ATile* Tile, int Direction);
-
+	
 	void InitializeMap(TArray<ATile>);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
+	TArray<ATile*> Tiles;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
+	int RowCount;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
+	int ColumnCount;
 
 protected:
 	// Called when the game starts or when spawned
@@ -43,24 +52,14 @@ private:
 	bool IsBlockedByWall(int x, int y);
 	
 	static ERoomType CharToRoomType(char c);
-
 	
-
-/*
-	 *std::vector<std::vector<Tile>> GetCurrentHeatMap();
-    void UpdateFields(std::vector<Tile*> tiles);
-    void LockQuadrant(unsigned int QuadrantId);
-    unsigned int GetShadewalkerQuadrant();
-    Tile* GetEntityTile(Entity* entity);
-    std::vector<std::vector<Tile>> DuplicateMap();
-    void InitializeMap();
-    bool IsBlockedByWall(int x, int y);
-    static RoomType CharToRoomType(char c);
-    void FindSourceTilePosition(Entity* entity, int& sourceX, int& sourceY);
-
-private:
-    std::vector<std::vector<Tile>> Tiles;
-    std::vector<Quadrant*> Quadrants; // Collection of all quadrants
-	 */
+	int GetArrayIndex(const int RowIndex, const int ColumIndex) const;
+	
+	FIntVector GetXAndYFromArrayIndex(int32 ArrayIndex) const;
+	
+	UFUNCTION(BlueprintCallable, Category="Logging")
+	void Log(const FString& S);
+	
+	void PopulateTileMap();
 	
 };

@@ -20,8 +20,9 @@ enum class EBorderType : uint8
 {
 	None = 0 UMETA(DisplayName = "NONE"),
 	Wall = 1 UMETA(DisplayName = "WALL"),
-	Locked = 2 UMETA(DisplayName = "LOCKED"),
-	LockedWall = 3 UMETA(DisplayName = "LOCKEDWALL"),
+	QuadrantWall = 2 UMETA(DisplayName = "QUADRANTWALL"),
+	LockedNone = 3 UMETA(DisplayName = "LOCKEDNONE"),
+	LockedQuadrantWall = 4 UMETA(DisplayName = "LOCKEDQUADRANTWALL"),
 };
 
 UENUM(BlueprintType)

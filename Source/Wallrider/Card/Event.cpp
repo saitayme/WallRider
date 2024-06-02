@@ -2,3 +2,8 @@
 
 
 #include "Event.h"
+
+void UEvent::InvokeEvent()
+{
+	
+}

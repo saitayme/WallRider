@@ -14,9 +14,9 @@ ATile::ATile()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void ATile::SetEdgeLocked(EEdgeType Edge, bool Locked)
+void ATile::SetEdgeLocked(const EEdgeType Edge, bool Locked)
 {
-	Borders[Edge] = Locked ? EBorderType::Locked : EBorderType::None; // use BorderType::None ??? idk man
+	Borders[Edge] = Locked ? EBorderType::LockedNone : EBorderType::None; // use BorderType::None ??? idk man
 }
 
 bool ATile::HasShadewalker()

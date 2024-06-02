@@ -17,7 +17,13 @@ public:
 	// Sets default values for this actor's properties
 	ATile();
 
-	UFUNCTION(BlueprintCallable, Category="Session")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Setup")
+	int XLocation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Setup")
+	int YLocation;
+
+	UFUNCTION(BlueprintCallable, Category="Setup")
 	void SetEdgeLocked(EEdgeType Edge, bool Locked);
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
@@ -39,6 +45,12 @@ public:
 	
 	float GetCrumValue();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
+	TMap<EEdgeType, EBorderType> Borders;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
+	ERoomType RoomType;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -49,8 +61,6 @@ private:
 	float CrumValue;
 	
 	TArray<AEntity*> CurrentEntities;
-	TMap<EEdgeType, EBorderType> Borders;
-	URoom* CurrentRoom;
 
 	UFUNCTION(BlueprintCallable, Category="Session", meta = (AllowPrivateAccess = "true"))
 	void AddEntity(AEntity* Entity);

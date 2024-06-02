@@ -44,7 +44,7 @@ public:
 	
 	UPROPERTY(BlueprintAssignable, EditAnywhere, Category="Session")
 	FOnEventWon OnEventWon;
-
+	
 	UPROPERTY(BlueprintAssignable, EditAnywhere, Category="Session")
 	FOnEventFailed OnEventFailed;
 

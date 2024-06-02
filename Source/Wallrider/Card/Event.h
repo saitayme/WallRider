@@ -16,6 +16,7 @@ class WALLRIDER_API UEvent : public UCard
 
 public:
 
+	UFUNCTION(BlueprintCallable)
 	virtual void InvokeEvent();
 
 };
