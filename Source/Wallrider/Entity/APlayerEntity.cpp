@@ -38,16 +38,10 @@ void APlayerEntity::Interacted(AEntity* Other)
 	}
 }
 
-void APlayerEntity::Investigated(AEntity* Other)
-{
-	Super::Investigated(Other);
-}
-
 // Called when the game starts or when spawned
 void APlayerEntity::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void APlayerEntity::Damage(const int Value)

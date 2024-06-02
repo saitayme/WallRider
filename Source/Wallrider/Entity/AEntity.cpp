@@ -79,14 +79,6 @@ void AEntity::Interacted(AEntity* Other)
 	}
 }
 
-void AEntity::Investigated(AEntity* Other)
-{
-	if (Other)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s investigated %s"), *Other->GetName(), *this->GetName());
-	}
-}
-
 void AEntity::Move(const int Direction)
 {
 	// Depending on the Direction, move the entity

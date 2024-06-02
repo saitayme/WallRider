@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "APlayerEntity.h"
 #include "GameFramework/Actor.h"
+#include "Wallrider/UInvestigatable.h"
 #include "AToken.generated.h"
 
 UCLASS()
-class WALLRIDER_API AToken : public AEntity
+class WALLRIDER_API AToken : public AEntity, public IInvestigatable
 {
 	GENERATED_BODY()
 
@@ -17,9 +18,13 @@ public:
 	AToken();
 
 	// Functions
+
+	EFactionType SabotageFaction;
+
+	void Sabotage(EFactionType OtherFaction);
 	
 	virtual void Interacted(AEntity* Other) override;
-	virtual void Investigated(AEntity* Other) override;
+	virtual EFactionType Investigated() override;
 
 protected:
 	// Called when the game starts or when spawned

@@ -15,6 +15,8 @@ class WALLRIDER_API UCard : public UObject
 	GENERATED_BODY()
 
 public:
+	
+	UCard();
 
 	UCard(FString qrCodeInfo);
 

@@ -2,8 +2,9 @@
 
 #include "RoomAbilities.h"
 #include "Room.h"
+#include "Tile.h"
 
-void RoomAbilities::ActivateAbility(URoom* Room)
+void ARoomAbilities::ActivateAbility(URoom* Room)
 {
     switch (Room->RoomType)
     {
@@ -12,9 +13,6 @@ void RoomAbilities::ActivateAbility(URoom* Room)
             break;
         case ERoomType::Control:
             ActivateControl(Room);
-            break;
-        case ERoomType::Hallway:
-            ActivateHallway(Room);
             break;
         case ERoomType::Portal:
             ActivatePortal(Room);
@@ -51,53 +49,57 @@ void RoomAbilities::ActivateAbility(URoom* Room)
     }
 }
 
-void RoomAbilities::ActivateLaboratory(URoom* Room)
+void ARoomAbilities::ActivateLaboratory(URoom* Room)
 {
     // Future implementation
 }
 
-void RoomAbilities::ActivateControl(URoom* Room)
+void ARoomAbilities::ActivateControl(URoom* Room)
 {
     // Future implementation
 }
 
 
-void RoomAbilities::ActivateQuantumBox(URoom* Room) {}
-void RoomAbilities::ActivateSecurity(URoom* Room) {}
-void RoomAbilities::ActivateElectrical(URoom* Room) {}
-void RoomAbilities::ActivateSurgery(URoom* Room) {}
-void RoomAbilities::ActivateStim(URoom* Room) {}
-void RoomAbilities::ActivateBreakroom(URoom* Room) {}
-void RoomAbilities::ActivateKitchen(URoom* Room) {}
-void RoomAbilities::ActivateArmory(URoom* Room) {}
+void ARoomAbilities::ActivateQuantumBox(URoom* Room) {}
+void ARoomAbilities::ActivateSecurity(URoom* Room) {}
+void ARoomAbilities::ActivateElectrical(URoom* Room) {}
+void ARoomAbilities::ActivateSurgery(URoom* Room) {}
+void ARoomAbilities::ActivateStim(URoom* Room) {}
+void ARoomAbilities::ActivateBreakroom(URoom* Room) {}
+void ARoomAbilities::ActivateKitchen(URoom* Room) {}
+void ARoomAbilities::ActivateArmory(URoom* Room) {}
 
-void RoomAbilities::ActivatePortal(URoom* Room)
+void ARoomAbilities::ActivatePortal(URoom* Room)
 {
-    if (Room->Entities.Num() == 0) return; // No entities in the room to teleport
+    ////Function can't be called, not implemented yet
 
-    // Get a random entity (assuming it's a player for simplicity)
-    AEntity* Entity = Room->Entities.Array()[0]; // Get the first entity
+    //if (Room->Entities.Num() == 0) return; // No entities in the room to teleport
 
-    // Find a random room that is not the current one
-    URoom* TargetRoom = nullptr;
-    do {
-        int32 RandomIndex = FMath::RandRange(0, AllRooms.Num() - 1);
-        TargetRoom = AllRooms[RandomIndex];
-    } while (TargetRoom == Room || TargetRoom == nullptr);
+    //// Get a random entity (assuming it's a player for simplicity)
+    //AEntity* Entity = Room->Entities.Array()[0]; // Get the first entity
 
-    // Find a random tile within the target room
-    ATile* TargetTile = TargetRoom->GetRandomTile();
+    //// Find a random room that is not the current one
+    //URoom* TargetRoom = nullptr;
+    //do {
+    //    int32 RandomIndex = FMath::RandRange(0, AllRooms.Num() - 1);
+    //    TargetRoom = AllRooms[RandomIndex];
+    //} while (TargetRoom == Room || TargetRoom == nullptr);
 
-    // Teleport the entity to the target tile
-    Entity->SetLocation(TargetTile->GetLocation());
+    //// Find a random tile within the target room
+    //ATile* TargetTile = TargetRoom->GetRandomTile();
+
+    //// Teleport the entity to the target tile
+    //Entity->SetLocation(TargetTile->GetLocation());
 }
 
-void RoomAbilities::ActivateCrematorium(URoom* Room)
+void ARoomAbilities::ActivateCrematorium(URoom* Room)
 {
-    for (ATile* Tile : Room->GetAllTiles())
-    {
-        Tile->SetOnFire(true); // Assuming SetOnFire is a method to handle fire logic
-    }
+    //Function can't be called, not implemented yet
+
+    //for (ATile* Tile : Room->GetAllTiles())
+    //{
+    //    Tile->SetOnFire(true); // Assuming SetOnFire is a method to handle fire logic
+    //}
     // Logic to reset fire after one turn should be handled by the game turn manager
 }
 

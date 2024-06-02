@@ -11,6 +11,8 @@ class WALLRIDER_API ARoomAbilities : public AActor
     GENERATED_BODY()
 
 public:
+    static void ActivateAbility(URoom* Room);
+private:
     static void ActivateLaboratory(URoom* Room);
     static void ActivateControl(URoom* Room);
     static void ActivatePortal(URoom* Room);

@@ -6,6 +6,7 @@
 #include "MapEnums.h"
 #include "UObject/Object.h"
 #include "Wallrider/UInteractable.h"
+#include "Wallrider/UInvestigatable.h"
 #include "WallRider/Entity/AEntity.h"
 #include "Room.generated.h"
 
@@ -13,7 +14,7 @@
  * 
  */
 UCLASS()
-class WALLRIDER_API URoom : public UObject
+class WALLRIDER_API URoom : public UObject, public IInteractable, public IInvestigatable
 // Commented out to test forward declaration
 // class WALLRIDER_API URoom : public UObject, public IInteractable
 {
@@ -27,13 +28,14 @@ public:
 	//UPROPERTY(BlueprintReadWrite, Category="Stats")
 	//UDelegateFunction ActOnUse;
 
-	
+	EFactionType SabotageFaction;
 
 	UFUNCTION(BlueprintCallable, Category="Session")
-	void Use(AEntity* Entity, const FString Instructions);
+	virtual void Interacted(AEntity* Other) override;
+	virtual EFactionType Investigated() override;
 
 	UFUNCTION(BlueprintCallable, Category="Session")
-	void Sabotage();
+	void Sabotage(EFactionType Faction);
 
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void MassSabotage();
@@ -44,13 +46,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Session")
 	void RemoveEntity(FString EntityId);
 
-	// Commented out to test forward declaration
-	// virtual void Interacted(UObject* Other) override;
-	// virtual void Investigated(UObject* Other) override;
-
 private:
 
 	TMap<FString, AEntity*> Entities;
-	bool IsSabotaged;
 
 };

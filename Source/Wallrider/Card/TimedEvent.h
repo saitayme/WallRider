@@ -16,6 +16,8 @@ class WALLRIDER_API UTimedEvent : public UEvent
 
 public:
 
+	UTimedEvent();
+
 	UTimedEvent(FString QrCodeInfo);
 
 	UPROPERTY(BlueprintReadWrite, Category="Stats")

@@ -21,8 +21,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Setup")
 	int MaxCharges;
 
-	virtual void Interacted(UObject* Other) override;
-	virtual EFactionType Investigated(UObject* Other) override;
+	virtual void Interacted(AEntity* Other) override;
 
 	//EVENTS
 

@@ -4,6 +4,10 @@
 #include "TimedEvent.h"
 #include "Wallrider/GameMode/GameController.h"
 
+UTimedEvent::UTimedEvent()
+{
+}
+
 UTimedEvent::UTimedEvent(FString QrCodeInfo)
 {
 

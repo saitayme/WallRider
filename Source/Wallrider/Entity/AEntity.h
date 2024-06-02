@@ -58,7 +58,6 @@ public:
 	virtual void Interact(TScriptInterface<IInteractable> Other);
 
 	virtual void Interacted(AEntity* Other) override;
-	virtual void Investigated(AEntity* Other) override;
 	
 	virtual void Move(int Direction);
 	

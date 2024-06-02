@@ -8,7 +8,7 @@ UChargedItem::UChargedItem()
 	CurrentCharges = MaxCharges;
 }
 
-void UChargedItem::Interacted(UObject* Other)
+void UChargedItem::Interacted(AEntity* Other)
 {
 	if (CurrentCharges == 0) {
 	
@@ -18,11 +18,6 @@ void UChargedItem::Interacted(UObject* Other)
 		CurrentCharges = CurrentCharges - 1;
 		Super::Interacted(Other);
 	}
-}
-
-EFactionType UChargedItem::Investigated(UObject* Other)
-{
-	return Super::Investigated(Other);
 }
 
 

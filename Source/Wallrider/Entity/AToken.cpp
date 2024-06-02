@@ -23,6 +23,12 @@ AToken::AToken()
 	// Generate a random item
 	const int32 Index = FMath::RandRange(0, ItemList.Num() - 1);
 	Item = ItemList[Index];
+	SabotageFaction = EFactionType::Neutral;
+}
+
+void AToken::Sabotage(EFactionType OtherFaction)
+{
+	SabotageFaction = OtherFaction;
 }
 
 void AToken::Interacted(AEntity* Other)
@@ -32,6 +38,11 @@ void AToken::Interacted(AEntity* Other)
 		// Use the item
 		Use(Cast<APlayerEntity>(Other));
 		// Then remove the token from the game
+		if (SabotageFaction != EFactionType::Neutral) {
+		
+			Other->Damage(1);
+			SabotageFaction = EFactionType::Neutral;
+		}
 		this->Destroy();	
 	} else if (const URoom* Room = Cast<URoom>(Other))
 	{
@@ -44,12 +55,13 @@ void AToken::Interacted(AEntity* Other)
 	}
 }
 
-void AToken::Investigated(AEntity* Other)
+
+
+EFactionType AToken::Investigated()
 {
-	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s investigated %s"), *OtherEntity->GetName(), *this->GetName());
-	}
+	const EFactionType BufferFaction = SabotageFaction;
+	SabotageFaction = EFactionType::Neutral;
+	return BufferFaction;
 }
 
 // Called when the game starts or when spawned

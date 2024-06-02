@@ -24,5 +24,4 @@ public:
 
 	// Override the Interacted function
 	virtual void Interacted(AEntity* Other) override;
-	virtual void Investigated(AEntity* Other) override;
 };

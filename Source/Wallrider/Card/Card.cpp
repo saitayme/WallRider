@@ -3,6 +3,10 @@
 
 #include "Card.h"
 
+UCard::UCard()
+{
+}
+
 UCard::UCard(FString qrCodeInfo)
 {
 }

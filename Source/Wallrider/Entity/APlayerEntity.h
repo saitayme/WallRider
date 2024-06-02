@@ -17,7 +17,6 @@ public:
 	APlayerEntity();
 
 	virtual void Interacted(AEntity* Other) override;
-	virtual void Investigated(AEntity* Other) override;
 
 	virtual void Damage(const int Value) override;
 

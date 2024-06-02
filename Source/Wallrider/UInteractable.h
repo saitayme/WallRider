@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Entity/EFactionType.h"
 
 #include "UInteractable.generated.h"
 
@@ -16,5 +17,4 @@ class IInteractable
 
 public:
 	virtual void Interacted(AEntity* Other) = 0;
-	virtual void Investigated(AEntity* Other) = 0;
 };

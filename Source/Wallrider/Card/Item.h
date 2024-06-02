@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Card.h"
 #include "Wallrider/UInteractable.h"
+#include "Wallrider/UInvestigatable.h"
+#include "Wallrider/Entity/EFactionType.h"
 #include "Item.generated.h"
 
 /**
@@ -21,12 +23,7 @@ public:
 
 	AEntity* Owner;
 
-	EFactionType SabotageFaction;
-
-	virtual void Interacted(UObject* Other) override;
-	virtual EFactionType Investigated(UObject* Other) override;
-
-	void Sabotage(EFactionType Faction);
+	virtual void Interacted(AEntity* Other) override;
 
 	//EVENTS
 
