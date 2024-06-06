@@ -18,4 +18,6 @@ public:
 
 	virtual void InvokeEvent();
 
+    UEvent(const FObjectInitializer& ObjectInitializer); // Added constructor declaration
+
 };

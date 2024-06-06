@@ -22,6 +22,7 @@ ATile::ATile() : CrumValue(0), Room(nullptr), CurrentBehaviour(EBehaviourType::N
 
 ATile::~ATile()
 {
+    // Destructor implementation (can be empty if nothing to clean up)
 }
 
 //does what it says
@@ -64,4 +65,15 @@ bool ATile::HasShadewalker() const
         }
     }
     return false;
+}
+
+AEntity* ATile::GetEntity() const {
+    if (CurrentEntities.Num() > 0) {
+        return CurrentEntities[0];
+    }
+    return nullptr;
+}
+
+bool ATile::HasEntity(AEntity* Entity) const {
+    return CurrentEntities.Contains(Entity);
 }

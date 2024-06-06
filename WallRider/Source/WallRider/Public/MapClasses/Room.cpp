@@ -1,11 +1,14 @@
 #include "Room.h"
 #include "../Entity/Entity.h"
 
-URoom::URoom(ERoomType Type) : Type(Type) {}
+URoom::URoom(ERoomType Type) : Type(Type) {
+    // Constructor implementation
+}
 
 URoom::~URoom() {}
 
 void URoom::Use(AEntity* Entity, const FString& Instruction) {
+    // Use implementation
     if (ActOnUse.IsBound()) {
         ActOnUse.Execute(Entity, Instruction);
     }
@@ -25,5 +28,4 @@ void URoom::TriggerSabotage() {
 
 void URoom::SetRoomType(ERoomType Type) {
     this->Type = Type;
-}
 }

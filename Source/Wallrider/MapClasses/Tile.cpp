@@ -23,8 +23,8 @@ URoom* room; // What room the tile is a part of
 // Sets default values
 ATile::ATile()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+    // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = false;
 }
 
 
@@ -37,7 +37,7 @@ bool ATile::HasShadewalker() const {
     return false;
 }
 
-TArray<AEntity*>& ATile::GetCurrentEntities() const {
+const TArray<AEntity*>& ATile::GetCurrentEntities() const {
     return CurrentEntities;
 }
 

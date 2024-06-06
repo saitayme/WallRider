@@ -22,6 +22,7 @@ class WALLRIDER_API URoom : public UObject
     GENERATED_BODY()
 
 public:
+    URoom();
     URoom(ERoomType Type);
     URoom(const FObjectInitializer& ObjectInitializer);
     virtual ~URoom();

@@ -165,3 +165,25 @@ void UTileMap::FindSourceTilePosition(AEntity* entity, int& sourceX, int& source
     sourceX = -1; // Indicate not found
     sourceY = -1;
 }
+
+// In ATile.cpp
+ATile::ATile() {
+    // Constructor implementation
+}
+
+ATile::~ATile() {
+    // Destructor implementation
+}
+
+void ATile::ChangeBehaviour(EBehaviourType newBehaviour) {
+    // Ensure this function is defined
+}
+
+// In UQuadrant.cpp
+UQuadrant::UQuadrant() {
+    // Constructor implementation
+}
+
+void UQuadrant::LockQuadrant() {
+    // Locking logic implementation
+}

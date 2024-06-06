@@ -101,10 +101,10 @@ unsigned int TileMap::GetShadewalkerQuadrant() {
 
 ATile* TileMap::GetEntityTile(AEntity* entity) {
     for (auto& row : Tiles) {
-        for (ATile& tile : row) {
-            auto it = std::find(tile.GetCurrentEntities().begin(), tile.GetCurrentEntities().end(), entity);
-            if (it != tile.GetCurrentEntities().end()) {
-                return &tile;
+        for (ATile* tile : row) {
+            auto it = std::find(tile->GetCurrentEntities().begin(), tile->GetCurrentEntities().end(), entity);
+            if (it != tile->GetCurrentEntities().end()) {
+                return tile;
             }
         }
     }

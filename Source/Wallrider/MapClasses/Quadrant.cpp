@@ -2,9 +2,15 @@
 
 #include "Quadrant.h"
 #include "Tile.h"  // Assuming Tile.h is in the same directory as Quadrant.cpp
-#include "Quadrant.generated.h"
 
-UQuadrant::UQuadrant(unsigned int QuadrantId, TArray<ATile*> bounds) : QuadrantId(QuadrantId), bounds(bounds) {}
+
+UQuadrant::UQuadrant() {
+    // Constructor implementation
+}
+
+void UQuadrant::LockQuadrant() {
+    // Locking logic implementation
+}
 
 unsigned int UQuadrant::GetQuadrantId() const {
     return QuadrantId;

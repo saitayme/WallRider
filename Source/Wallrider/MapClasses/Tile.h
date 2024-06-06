@@ -44,7 +44,7 @@ public:
     ATile* Clone() const; // Implementing Clone method
 
     UFUNCTION(BlueprintCallable, Category="Tile")
-    TArray<AEntity*>& GetCurrentEntities() const;
+    const TArray<AEntity*>& GetCurrentEntities() const;
 
     UFUNCTION(BlueprintCallable, Category="Tile")
     TMap<FString, EBorderType> GetBorders() const;

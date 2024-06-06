@@ -9,6 +9,10 @@ URoom::URoom(ERoomType type) : Type(type) {}
 
 URoom::URoom(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 
+URoom::URoom() : UObject(FObjectInitializer::Get()) {
+    // Constructor implementation
+}
+
 URoom::~URoom() {}
 
 
@@ -43,6 +47,10 @@ void URoom::Interacted(UObject* Other)
 
 void URoom::Investigated(UObject* Other)
 {
+}
+
+void URoom::Use(AEntity* entity, const FString& instruction) {
+    // Use implementation
 }
 
 ATile* URoom::GetRandomTile() {

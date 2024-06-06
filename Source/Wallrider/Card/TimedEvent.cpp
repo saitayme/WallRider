@@ -8,13 +8,9 @@ UTimedEvent::UTimedEvent(const FObjectInitializer& ObjectInitializer) : Super(Ob
     // Constructor implementation
 }
 
-UTimedEvent::UTimedEvent(FString QrCodeInfo)
+UTimedEvent::UTimedEvent(FString QrCodeInfo) : UEvent(FObjectInitializer::Get())
 {
-
-	AGameController* GameController = static_cast<AGameController*>(UObject::GetWorld()->GetAuthGameMode());
-
-	GameController->OnNextRound.AddDynamic(this, &UTimedEvent::OnNextRound);
-
+    // Constructor implementation
 }
 
 void UTimedEvent::InvokeEvent()
