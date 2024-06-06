@@ -20,7 +20,7 @@ public:
     bool CheckIfShadewalkerPresent() const;
 
     UFUNCTION(BlueprintCallable, Category="Quadrant")
-    unsigned int GetQuadrantId() const { return QuadrantId; }
+    unsigned int GetQuadrantId() const;
 
 private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Quadrant", meta=(AllowPrivateAccess = "true"))

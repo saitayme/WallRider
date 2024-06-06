@@ -1,5 +1,6 @@
 #include "Quadrant.h"
 #include "../MapClasses/Tile.h"
+#include "Misc/DefaultValueHelper.h"
 
 UQuadrant::UQuadrant(unsigned int QuadrantId, TArray<ATile*> Bounds) : QuadrantId(QuadrantId), Bounds(Bounds) {}
 
@@ -18,3 +19,6 @@ bool UQuadrant::CheckIfShadewalkerPresent() const {
     return false;
 }
 
+unsigned int UQuadrant::GetQuadrantId() const {
+    return QuadrantId;
+}

@@ -36,6 +36,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
 	int YLocation;
 
+	// Forward declaration of Room
+	class URoom* CurrentRoom;
+
 	// Events (also available in blueprints)
 	
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPossessed, AEntity*, currentEntityRef);
@@ -60,7 +63,7 @@ public:
 	
 	virtual void Move(int Direction);
 	
-	void SetLocation(FVector NewLocation); // Declaration
+	void SetLocation(FVector NewLocation);
 
 	UFUNCTION(BlueprintCallable, Category="Logging")
 	void Log(const FString& s);

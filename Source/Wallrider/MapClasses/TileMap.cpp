@@ -1,26 +1,27 @@
 #include "TileMap.h"
+
 #include "Room.h"
 
-UTileMap::UTileMap() {}
+TileMap::TileMap() {}
 
-UTileMap::~UTileMap() {}
+TileMap::~TileMap() {}
 
-TArray<TArray<ATile>> UTileMap::DuplicateMap() {
-    TArray<TArray<ATile>> mapCopy;
+std::vector<std::vector<ATile*>> TileMap::DuplicateMap() {
+    std::vector<std::vector<ATile*>> mapCopy;
     for (const auto& row : Tiles) {
-        TArray<ATile> rowCopy;
+        std::vector<ATile*> rowCopy;
         for (const auto& tile : row) {
-            rowCopy.Add(*tile.Clone()); 
+            rowCopy.push_back(tile->Clone()); 
         }
-        mapCopy.Add(rowCopy);
+        mapCopy.push_back(rowCopy);
     }
     return mapCopy;
 }
 
-void UTileMap::UpdateFields(TArray<ATile*> tiles) {
-    if (tiles.IsEmpty()) return;
+void TileMap::UpdateFields(std::vector<ATile*> tiles) {
+    if (tiles.empty()) return;
 
-    TArray<TArray<int>> effectPattern = {
+    std::vector<std::vector<int>> effectPattern = {
         {0, 0, 1, 0, 0},
         {0, 1, 2, 1, 0},
         {1, 2, 3, 2, 1},
@@ -28,8 +29,9 @@ void UTileMap::UpdateFields(TArray<ATile*> tiles) {
         {0, 0, 1, 0, 0}
     };
 
-    ATile* sourceTile = tiles[0]; // first tile is the source
+    ATile* sourceTile = tiles[0]; // first tile is da source
     int sourceX, sourceY;
+    // Assuming we have an entity variable that represents the entity on the sourceTile
     AEntity* entity = sourceTile->GetEntity(); // This line is hypothetical and depends on your implementation
     FindSourceTilePosition(entity, sourceX, sourceY);
     if (sourceX == -1 || sourceY == -1) {
@@ -37,16 +39,17 @@ void UTileMap::UpdateFields(TArray<ATile*> tiles) {
         return;
     }
 
-    for (int i = 0; i < effectPattern.Num(); ++i) {
-        for (int j = 0; j < effectPattern[i].Num(); ++j) {
+    for (int i = 0; i < effectPattern.size(); ++i) {
+        for (int j = 0; j < effectPattern[i].size(); ++j) {
             int effectValue = effectPattern[i][j];
             if (effectValue > 0) {
                 int targetX = sourceX + i - 2; // Centering the pattern on the source
                 int targetY = sourceY + j - 2;
 
-                if (targetX >= 0 && targetX < Tiles.Num() && targetY >= 0 && targetY < Tiles[targetX].Num()) {
+                if (targetX >= 0 && targetX < Tiles.size() && targetY >= 0 && targetY < Tiles[targetX].size()) {
                     if (!IsBlockedByWall(targetX, targetY)) {
-                        Tiles[targetX][targetY]->ChangeCrums(effectValue);
+                        ATile* tile = Tiles[targetX][targetY]; // Use pointer directly
+                        tile->ChangeCrums(effectValue);
                     }
                 }
             }
@@ -54,8 +57,8 @@ void UTileMap::UpdateFields(TArray<ATile*> tiles) {
     }
 }
 
-bool UTileMap::IsBlockedByWall(int x, int y) {
-    ATile* tile = Tiles[x][y]; // Correctly use the pointer
+bool TileMap::IsBlockedByWall(int x, int y) {
+    ATile* tile = Tiles[x][y]; // Use pointer directly
     // Example logic to check if any border of the tile is not walkable
     for (auto const& border : tile->GetBorders()) {
         if (border.Value == EBorderType::Locked) {
@@ -65,7 +68,7 @@ bool UTileMap::IsBlockedByWall(int x, int y) {
     return false;
 }
 
-void UTileMap::LockQuadrant(unsigned int QuadrantId) {
+void TileMap::LockQuadrant(unsigned int QuadrantId) {
     int startX, startY, endX, endY;
     switch (QuadrantId) {
         case 1: startX = 0; startY = 0; endX = 4; endY = 4; break;
@@ -87,19 +90,20 @@ void UTileMap::LockQuadrant(unsigned int QuadrantId) {
     }
 }
 
-unsigned int UTileMap::GetShadewalkerQuadrant() {
-    for (auto& quadrant : Quadrants) {
+unsigned int TileMap::GetShadewalkerQuadrant() {
+    for (auto& quadrant : Quadrants) { // Cuz 'Quadrants' is a collection of all quadrants
         if (quadrant->CheckIfShadewalkerPresent()) {
-            return quadrant->GetQuadrantId();
+            return quadrant->GetQuadrantId(); // Assuming a GetQuadrantId finds an ID
         }
     }
-    return 0; // Return 0 if the Shadewalker is not found in any quadrant
+    return 0; // Return 0 if the Shadewalker is not found in any quadrant Ps: SHOULDN'T HAPPEN BRO
 }
 
-ATile* UTileMap::GetEntityTile(AEntity* entity) {
+ATile* TileMap::GetEntityTile(AEntity* entity) {
     for (auto& row : Tiles) {
         for (ATile& tile : row) {
-            if (tile.HasEntity(entity)) {
+            auto it = std::find(tile.GetCurrentEntities().begin(), tile.GetCurrentEntities().end(), entity);
+            if (it != tile.GetCurrentEntities().end()) {
                 return &tile;
             }
         }
@@ -107,7 +111,7 @@ ATile* UTileMap::GetEntityTile(AEntity* entity) {
     return nullptr;
 }
 
-void UTileMap::InitializeMap() {
+void TileMap::InitializeMap() {
     char layout[9][9] = {
         {'L', 'L', 'L', 'L', 'H', 'C', 'C', 'C', 'C'},
         {'P', 'L', 'L', 'Q', 'H', 'C', 'C', 'S', 'S'},
@@ -123,8 +127,8 @@ void UTileMap::InitializeMap() {
     for (int x = 0; x < 9; ++x) {
         for (int y = 0; y < 9; ++y) {
             ERoomType type = CharToRoomType(layout[x][y]);
-            Tiles[x][y] = NewObject<ATile>();
-            Tiles[x][y]->SetRoom(NewObject<URoom>(type));
+            Tiles[x][y] = NewObject<ATile>(GetTransientPackage(), NAME_None, RF_NoFlags, nullptr, false);
+            Tiles[x][y]->SetRoom(NewObject<URoom>(GetTransientPackage(), NAME_None, RF_NoFlags, nullptr, false));
             // Set borders as walls or doors as needed
             // Logic to set walls and doors based on the room's position and type
             // This part of the code will be implemented according to the game's rules for room accessibility and connections
@@ -132,7 +136,7 @@ void UTileMap::InitializeMap() {
     }
 }
 
-ERoomType UTileMap::CharToRoomType(char c) {
+ERoomType TileMap::CharToRoomType(char c) {
     switch (c) {
         case 'L': return ERoomType::Laboratory;
         case 'H': return ERoomType::Hallway;
@@ -152,10 +156,10 @@ ERoomType UTileMap::CharToRoomType(char c) {
     }
 }
 
-void UTileMap::FindSourceTilePosition(AEntity* entity, int& sourceX, int& sourceY) {
-    for (int x = 0; x < Tiles.Num(); ++x) {
-        for (int y = 0; y < Tiles[x].Num(); ++y) {
-            if (Tiles[x][y]->HasEntity(entity)) {
+void TileMap::FindSourceTilePosition(AEntity* entity, int& sourceX, int& sourceY) {
+    for (int x = 0; x < Tiles.size(); ++x) {
+        for (int y = 0; y < Tiles[x].size(); ++y) {
+            if (Tiles[x][y]->HasEntity(entity)) { // Corrected member access
                 sourceX = x;
                 sourceY = y;
                 return;

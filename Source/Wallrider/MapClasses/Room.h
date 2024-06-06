@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
 #include "MapEnums.h"
 #include "UObject/Object.h"
 #include "Wallrider/UInteractable.h"
@@ -16,45 +17,45 @@ class ATile;
  * 
  */
 UCLASS()
-class WALLRIDER_API URoom : public UObject, public IInteractable
+class WALLRIDER_API URoom : public UObject
 {
-	GENERATED_BODY()
-	
+    GENERATED_BODY()
+
 public:
+    URoom(ERoomType Type);
+    URoom(const FObjectInitializer& ObjectInitializer);
+    virtual ~URoom();
 
-	UPROPERTY(BlueprintReadWrite, Category="Stats")
-	ERoomType RoomType;
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void Use(AEntity* Entity, const FString& Instruction);
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void AddEntity(AEntity* Entity);
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void RemoveEntity(AEntity* Entity);
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void TriggerSabotage();
+
+    UFUNCTION(BlueprintCallable, Category="Room")
+    void SetRoomType(ERoomType Type);
 	
-	//UPROPERTY(BlueprintReadWrite, Category="Stats")
-	//UDelegateFunction ActOnUse;
+    UPROPERTY(VisibleAnywhere, Category="Room")
+    TArray<AEntity*> Entities;
 
-	// Add a public getter for Entities
-    const TMap<FString, AEntity*>& GetEntities() const { return Entities; }
+    UPROPERTY(VisibleAnywhere, Category="Room")
+    ERoomType Type;
 
-	UFUNCTION(BlueprintCallable, Category="Session")
-	void Use(AEntity* Entity, const FString Instructions);
+    ATile* GetRandomTile();
+    TArray<ATile*> GetAllTiles();
+    TArray<AEntity*> GetEntities() const;
 
-	UFUNCTION(BlueprintCallable, Category="Session")
-	void Sabotage();
-
-	UFUNCTION(BlueprintCallable, Category="Session")
-	void MassSabotage();
-
-	UFUNCTION(BlueprintCallable, Category="Session")
-	void AddEntity(AEntity* Entity);
-
-	UFUNCTION(BlueprintCallable, Category="Session")
-	void RemoveEntity(FString EntityId);
-
-	virtual void Interacted(UObject* Other) override;
-	virtual void Investigated(UObject* Other) override;
-
-	ATile* GetRandomTile();
-	TArray<ATile*> GetAllTiles();
+    void Sabotage();
+    void MassSabotage();
+    void Interacted(UObject* Other);
+    void Investigated(UObject* Other);
 
 private:
-
-	TMap<FString, AEntity*> Entities;
-	bool IsSabotaged;
-
+    TArray<ATile*> Tiles; // Array to store pointers to tiles
 };

@@ -45,12 +45,10 @@ void AToken::Interacted(UObject* Other)
 	}
 }
 
-void AToken::Investigated(UObject* Other)
+EFactionType AToken::Investigated(UObject* Other)
 {
-	if (const AEntity* OtherEntity = Cast<AEntity>(Other))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s investigated %s"), *OtherEntity->GetName(), *this->GetName());
-	}
+    // Implementation logic here
+    return EFactionType::Token; // Replace 'ValidEnumerator' with an actual enumerator
 }
 
 // Called when the game starts or when spawned

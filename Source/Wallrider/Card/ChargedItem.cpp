@@ -3,10 +3,9 @@
 
 #include "ChargedItem.h"
 
-UChargedItem::UChargedItem()
-{
+/*UChargedItem::UChargedItem() : UItem() { 
 	CurrentCharges = MaxCharges;
-}
+}*/
 
 void UChargedItem::Interacted(UObject* Other)
 {
@@ -24,5 +23,4 @@ EFactionType UChargedItem::Investigated(UObject* Other)
 {
 	return Super::Investigated(Other);
 }
-
 

@@ -3,9 +3,7 @@
 
 #include "Card.h"
 
-UCard::UCard(FString qrCodeInfo)
-{
-}
+UCard::UCard(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 
 void UCard::InterpretQrCode(const FString qrCodeInfo)
 {

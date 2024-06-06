@@ -3,64 +3,87 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MapEnums.h"
-#include "Room.h" // Include Room.h here if ATile needs to interact with URoom
 #include "GameFramework/Actor.h"
-#include "Tile.generated.h"
+#include "../Entity/AEntity.h" // Adjusted relative path
+#include <list>
+#include <map>
+#include <string>
+#include <algorithm>
+#include "../MapClasses/Room.h"
+#include "MapEnums.h" // Assuming BorderType and BehaviourType are defined here
+#include "Tile.generated.h" // Move this line to be the last include
+
+enum class BorderType { None, Wall, Locked, LockedWall };
+enum class BehaviourType { Light, Fire, Sound, None };
 
 UCLASS()
 class WALLRIDER_API ATile : public AActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
-	ATile();
+    ATile();
+    virtual ~ATile();
 
-	UFUNCTION(BlueprintCallable, Category="Session")
-	void SetEdgeLocked(EEdgeType Edge, bool Locked);
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void ChangeCrums(float delta);
 
-	UFUNCTION(BlueprintCallable, Category="Stats")
-	bool HasShadewalker();
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void AddEntity(AEntity* entity);
 
-	UFUNCTION(BlueprintCallable, Category="Stats")
-	TArray<AEntity*> GetCurrentEntities();
-	
-	UFUNCTION(BlueprintCallable, Category="Stats")
-	TMap<EEdgeType, EBorderType> GetBorders();
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void RemoveEntity(AEntity* entity);
 
-	UFUNCTION(BlueprintCallable, Category="Stats")
-	EBorderType GetBorder(const EEdgeType Direction);
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void SetEdgeLocked(const FString& edge, bool locked);
+    
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    bool HasShadewalker() const;
 
-	UFUNCTION(BlueprintCallable, Category="Stats")
-	void ChangeCrumValue(float delta);
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    ATile* Clone() const; // Implementing Clone method
 
-	void SetRoom(URoom* Room);
-	
-	float GetCrumValue();
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    TArray<AEntity*>& GetCurrentEntities() const;
 
-	FVector GetLocation();
-	void SetOnFire(bool bIsOnFire);
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    TMap<FString, EBorderType> GetBorders() const;
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void SetRoom(URoom* newRoom);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    bool HasEntity(AEntity* entity) const;
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    AEntity* GetEntity() const;
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void SetOnFire(bool bIsOnFire);
+
+    UFUNCTION(BlueprintCallable, Category="Tile")
+    void ChangeBehaviour(EBehaviourType newBehaviour);
+
+    FVector GetLocation() const; // Changed to const
+
+    float GetCrumValue() const;
+    void BeginPlay();
+    void ChangeBehaviour(BehaviourType newBehaviour);
+
+    EBorderType GetBorder(const FString& Direction) const;
+
 private:
-	
-	UPROPERTY(BlueprintReadOnly, Category="Stats", meta = (AllowPrivateAccess = "true"))
-	float CrumValue;
-	
-	TArray<AEntity*> CurrentEntities;
-	TMap<EEdgeType, EBorderType> Borders;
-	URoom* CurrentRoom;
+    UPROPERTY(VisibleAnywhere, Category="Tile")
+    float CrumValue;
 
-	UFUNCTION(BlueprintCallable, Category="Session", meta = (AllowPrivateAccess = "true"))
-	void AddEntity(AEntity* Entity);
-	
-	UFUNCTION(BlueprintCallable, Category="Session", meta = (AllowPrivateAccess = "true"))
-	void RemoveEntity(AEntity* Entity);
-	
-	ATile* Clone();
-	
+    UPROPERTY(VisibleAnywhere, Category="Tile")
+    TArray<AEntity*> CurrentEntities;
+
+    UPROPERTY(VisibleAnywhere, Category="Tile")
+    TMap<FString, EBorderType> Borders;
+
+    UPROPERTY(VisibleAnywhere, Category="Tile")
+    URoom* room;
+
+    BehaviourType currentBehaviour;
 };

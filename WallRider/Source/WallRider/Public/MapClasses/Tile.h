@@ -1,5 +1,7 @@
 #pragma once
 
+#include "MapEnums.h"  // Correctly include MapEnums.h
+using namespace MapEnums; // Use the namespace if enums are inside a namespace
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "../Entity/Entity.h" // Assuming Entity class exists
@@ -9,11 +11,8 @@
 #include <algorithm> // For std::find
 #include "../MapClasses/Room.h"
 
-enum class BorderType { None, Wall, Locked, LockedWall };
-enum class BehaviourType { Light, Fire, Sound, None };
-
 UCLASS()
-class YOURGAME_API ATile : public AActor
+class WALLRIDER_API ATile : public AActor
 {
     GENERATED_BODY()
 
@@ -32,7 +31,7 @@ public:
 
     UFUNCTION(BlueprintCallable, Category="Tile")
     void SetEdgeLocked(const FString& edge, bool locked);
-
+    
     UFUNCTION(BlueprintCallable, Category="Tile")
     void ChangeBehaviour(BehaviourType newBehaviour);
 
@@ -55,7 +54,7 @@ public:
     URoom* Room;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile", meta=(AllowPrivateAccess = "true"))
-    BehaviourType CurrentBehaviour;
+    EBehaviourType CurrentBehaviour; // Use the correct enum name
 
     UFUNCTION(BlueprintCallable, Category="Tile")
     bool HasEntity(AEntity* entity) const;
@@ -63,4 +62,3 @@ public:
     UFUNCTION(BlueprintCallable, Category="Tile")
     AEntity* GetEntity() const;
 };
-

@@ -3,10 +3,10 @@
 
 #include "Item.h"
 
-#include "Wallrider/Entity/AEntity.h"
+#include "WallRider/Entity/AEntity.h"
 #include "WallRider/Entity/FactionType.h"
 
-UItem::UItem()
+UItem::UItem(const FObjectInitializer& ObjectInitializer) : UCard(ObjectInitializer)
 {
 	SabotageFaction = EFactionType::Neutral;
 }
@@ -27,7 +27,7 @@ void UItem::Interacted(UObject* Other)
 		}
 
 	} else {
-		UE_LOG(LogTemp, Warning, TEXT("%s cannot interact with %s"), *Other->GetName(), *this->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("%s cannot interact with %s"), *Other->GetName(), *GetName());
 		return;
 	}
 	

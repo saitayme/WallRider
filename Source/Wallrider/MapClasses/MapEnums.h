@@ -18,10 +18,10 @@ enum class EEdgeType : uint8
 UENUM(BlueprintType)
 enum class EBorderType : uint8
 {
-	None = 0 UMETA(DisplayName = "NONE"),
-	Wall = 1 UMETA(DisplayName = "WALL"),
-	Locked = 2 UMETA(DisplayName = "LOCKED"),
-	LockedWall = 3 UMETA(DisplayName = "LOCKEDWALL"),
+	None = 0 UMETA(DisplayName = "None"),
+	Wall = 1 UMETA(DisplayName = "Wall"),
+	Locked = 2 UMETA(DisplayName = "Locked"),
+	LockedWall = 3 UMETA(DisplayName = "Locked Wall"),
 };
 
 UENUM(BlueprintType)
@@ -41,4 +41,13 @@ enum class ERoomType : uint8
 	Kitchen = 11 UMETA(DisplayName = "Kitchen"),
 	Crematorium = 12 UMETA(DisplayName = "Crematorium"),
 	Armory = 13 UMETA(DisplayName = "Armory")
+};
+
+UENUM(BlueprintType)
+enum class EBehaviourType : uint8
+{
+	Light = 0 UMETA(DisplayName = "Light"),
+	Fire = 1 UMETA(DisplayName = "Fire"),
+	Sound = 2 UMETA(DisplayName = "Sound"),
+	None = 3 UMETA(DisplayName = "None"),
 };

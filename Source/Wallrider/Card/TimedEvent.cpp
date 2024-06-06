@@ -4,6 +4,10 @@
 #include "TimedEvent.h"
 #include "Wallrider/GameMode/GameController.h"
 
+UTimedEvent::UTimedEvent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    // Constructor implementation
+}
+
 UTimedEvent::UTimedEvent(FString QrCodeInfo)
 {
 

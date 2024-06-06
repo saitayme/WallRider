@@ -7,6 +7,18 @@
 #include "WallRider/Entity/AEntity.h"
 #include "WallRider/Entity/FactionType.h"
 
+// Parameters added as per instructions
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile")
+float CrumValue; // The crums are a float that need to be stored
+
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile")
+std::list<AEntity*> CurrentEntities; // Who is on that Tile
+
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile")
+std::map<FString, EBorderType> Borders; // What edges of the Tile are walk through and which are not
+
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Tile")
+URoom* room; // What room the tile is a part of
 
 // Sets default values
 ATile::ATile()
@@ -15,79 +27,81 @@ ATile::ATile()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void ATile::SetEdgeLocked(EEdgeType Edge, bool Locked)
-{
-	Borders[Edge] = Locked ? EBorderType::Locked : EBorderType::None; // use BorderType::None ??? idk man
+
+bool ATile::HasShadewalker() const {
+    for (const AEntity* entity : CurrentEntities) {
+        if (entity->Faction == EFactionType::ShadeWalker) { 
+            return true;
+        }
+    }
+    return false;
 }
 
-bool ATile::HasShadewalker()
-{
-	for (const AEntity* entity : CurrentEntities) {
-		if (entity->Faction == EFactionType::ShadeWalker) { 
-			return true;
-		}
-	}
-	return false;
+TArray<AEntity*>& ATile::GetCurrentEntities() const {
+    return CurrentEntities;
 }
 
-TArray<AEntity*> ATile::GetCurrentEntities()
-{
-	return CurrentEntities;
+TMap<FString, EBorderType> ATile::GetBorders() const {
+    return Borders;
 }
 
-TMap<EEdgeType, EBorderType> ATile::GetBorders()
-{
-	const TMap<EEdgeType, EBorderType> Copy = Borders;
-	return Copy;
+EBorderType ATile::GetBorder(const FString& Direction) const {
+    const EBorderType Copy = Borders[Direction];
+    return Copy;
 }
 
-EBorderType ATile::GetBorder(const EEdgeType Direction)
-{
-	const EBorderType Copy = Borders[Direction];
-	return Copy;
-}
 
-void ATile::ChangeCrumValue(float delta)
-{
-	CrumValue += delta;
-}
 
 void ATile::SetRoom(URoom* Room)
 {
 }
 
-float ATile::GetCrumValue()
-{
-	return CrumValue;
+float ATile::GetCrumValue() const {
+    return CrumValue;
 }
 
 // Called when the game starts or when spawned
 void ATile::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 	
 }
 
-void ATile::AddEntity(AEntity* Entity)
-{
-	CurrentEntities.Add(Entity);
+// Removed this duplicate definition of AddEntity
+// void ATile::AddEntity(AEntity* entity) {
+//     CurrentEntities.Add(entity);
+// }
+
+ATile* ATile::Clone() const {
+    return nullptr;
 }
 
-void ATile::RemoveEntity(AEntity* Entity)
-{
-	CurrentEntities.Remove(Entity);
-}
-
-ATile* ATile::Clone()
-{
-	return nullptr;
-}
-
-FVector ATile::GetLocation() {
+FVector ATile::GetLocation() const {
     // Return the location of the tile
     return FVector(); // Placeholder
 }
 
 void ATile::SetOnFire(bool bIsOnFire) {
-    // Set the tile on fire
+    // Implementation
+}
+
+//does what it says
+void ATile::ChangeCrums(float delta) {
+    CrumValue += delta;
+}
+//same here
+void ATile::AddEntity(AEntity* entity) {
+    CurrentEntities.Add(entity);
+}
+//if u dont get this ur stupid
+void ATile::RemoveEntity(AEntity* entity) {
+    CurrentEntities.RemoveSingle(entity);
+}
+//same here
+void ATile::SetEdgeLocked(const FString& edge, bool locked) {
+    Borders[edge] = locked ? EBorderType::Locked : EBorderType::None; // use BorderType::None ??? idk man
+}
+// Changing behavior
+void ATile::ChangeBehaviour(BehaviourType newBehaviour) {
+    currentBehaviour = newBehaviour;
 }

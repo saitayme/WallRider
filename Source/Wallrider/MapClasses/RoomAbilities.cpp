@@ -4,11 +4,12 @@
 #include "Room.h"
 #include "Tile.h" // Include this at the top of the file
 
+
 TArray<URoom*> ARoomAbilities::AllRooms;
 
 void ARoomAbilities::ActivateAbility(URoom* Room)
 {
-    switch (Room->RoomType)
+    switch (Room->Type)
     {
         case ERoomType::Laboratory:
             ActivateLaboratory(Room);
@@ -82,7 +83,7 @@ void ARoomAbilities::ActivatePortal(URoom* Room)
     if (Room->GetEntities().Num() == 0) return; // No entities in the room to teleport
 
     // Get a random entity (assuming it's a player for simplicity)
-    AEntity* Entity = Room->GetEntities().Array()[0].Value; // Correctly access the first entity
+    AEntity* Entity = Room->GetEntities()[0]; // Corrected access to the first entity
 
     // Find a random room that is not the current one
     URoom* TargetRoom = nullptr;
@@ -107,3 +108,14 @@ void ARoomAbilities::ActivateCrematorium(URoom* Room)
     // Logic to reset fire after one turn should be handled by the game turn manager
 }
 
+/*void UGameManager::EndTurn() {
+    for (URoom* Room : AllRooms) {
+        if (Room->IsCrematorium()) {
+            TArray<ATile*> Tiles = Room->GetAllTiles();
+            for (ATile* Tile : Tiles) {
+                Tile->SetOnFire(false);  // Reset fire state
+            }
+        }
+    }
+}
+*/

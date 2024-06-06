@@ -4,8 +4,29 @@
 #include "Room.h"
 #include "Tile.h"  // Include Tile.h here for full definition
 
-void URoom::Use(AEntity* Entity, const FString Instructions)
-{
+
+URoom::URoom(ERoomType type) : Type(type) {}
+
+URoom::URoom(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
+
+URoom::~URoom() {}
+
+
+
+void URoom::AddEntity(AEntity* entity) {
+    Entities.Add(entity);
+}
+
+void URoom::RemoveEntity(AEntity* entity) {
+    Entities.Remove(entity);
+}
+
+void URoom::TriggerSabotage() {
+    // Implementation depends on how sabotage affects the room or game state
+}
+
+void URoom::SetRoomType(ERoomType type) {
+    Type = type;
 }
 
 void URoom::Sabotage()
@@ -14,19 +35,6 @@ void URoom::Sabotage()
 
 void URoom::MassSabotage()
 {
-}
-
-void URoom::AddEntity(AEntity* Entity)
-{
-	Entities.Add(Entity->EntityId, Entity);
-}
-
-void URoom::RemoveEntity(FString EntityId)
-{
-	if (Entities.Contains(EntityId))
-	{
-		Entities.Remove(EntityId);
-	}
 }
 
 void URoom::Interacted(UObject* Other)
@@ -38,11 +46,17 @@ void URoom::Investigated(UObject* Other)
 }
 
 ATile* URoom::GetRandomTile() {
-    // Return a random tile from the room
-    return nullptr; // Placeholder
+    if (Tiles
+        .Num() == 0) return nullptr; // Check if there are no tiles
+    int32 RandomIndex = FMath::RandRange(0, Tiles.Num() - 1);
+    return Tiles[RandomIndex];
 }
 
 TArray<ATile*> URoom::GetAllTiles() {
-    // Return all tiles in the room
-    return TArray<ATile*>(); // Placeholder
+    return Tiles;
+}
+
+TArray<AEntity*> URoom::GetEntities() const {
+    // Implementation
+    return Entities;  // Assuming Entities is a TArray<AEntity*>
 }

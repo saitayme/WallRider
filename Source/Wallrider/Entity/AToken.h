@@ -30,7 +30,7 @@ public:
 	// Functions
 	
 	virtual void Interacted(UObject* Other) override;
-	virtual void Investigated(UObject* Other) override;
+	virtual EFactionType Investigated(UObject* Other) override;
 
 protected:
 	// Called when the game starts or when spawned

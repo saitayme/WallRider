@@ -16,7 +16,7 @@ class WALLRIDER_API UCard : public UObject
 
 public:
 
-	UCard(FString qrCodeInfo);
+	UCard(const FObjectInitializer& ObjectInitializer);
 
 private:
 
