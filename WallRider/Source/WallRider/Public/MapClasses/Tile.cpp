@@ -22,7 +22,7 @@ ATile::ATile() : CrumValue(0), Room(nullptr), CurrentBehaviour(EBehaviourType::N
 
 ATile::~ATile()
 {
-    // Destructor implementation (can be empty if nothing to clean up)
+    // Destructor implementation can be empty if there's nothing specific to clean up
 }
 
 //does what it says
@@ -76,4 +76,13 @@ AEntity* ATile::GetEntity() const {
 
 bool ATile::HasEntity(AEntity* Entity) const {
     return CurrentEntities.Contains(Entity);
+}
+
+bool ATile::ContainsEntity(AEntity* entity) const {
+    for (AEntity* currentEntity : CurrentEntities) {
+        if (currentEntity == entity) {
+            return true;
+        }
+    }
+    return false;
 }

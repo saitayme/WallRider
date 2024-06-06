@@ -72,6 +72,8 @@ public:
 
     EBorderType GetBorder(const FString& Direction) const;
 
+    bool ContainsEntity(AEntity* entity) const; // Added declaration for ContainsEntity
+
 private:
     UPROPERTY(VisibleAnywhere, Category="Tile")
     float CrumValue;

@@ -50,7 +50,14 @@ EBorderType ATile::GetBorder(const FString& Direction) const {
     return Copy;
 }
 
-
+bool ATile::ContainsEntity(AEntity* entity) const {
+    for (AEntity* currentEntity : CurrentEntities) {
+        if (currentEntity == entity) {
+            return true;
+        }
+    }
+    return false;
+}
 
 void ATile::SetRoom(URoom* Room)
 {
@@ -102,6 +109,13 @@ void ATile::SetEdgeLocked(const FString& edge, bool locked) {
     Borders[edge] = locked ? EBorderType::Locked : EBorderType::None; // use BorderType::None ??? idk man
 }
 // Changing behavior
-void ATile::ChangeBehaviour(BehaviourType newBehaviour) {
-    currentBehaviour = newBehaviour;
+void ATile::ChangeBehaviour(BehaviourType NewBehaviour) {
+    currentBehaviour = NewBehaviour;
+}
+
+AEntity* ATile::GetEntity() const {
+    if (CurrentEntities.Num() > 0) {
+        return CurrentEntities[0];
+    }
+    return nullptr;
 }
