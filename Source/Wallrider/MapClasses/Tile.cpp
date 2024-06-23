@@ -113,6 +113,10 @@ void ATile::ChangeBehaviour(BehaviourType NewBehaviour) {
     currentBehaviour = NewBehaviour;
 }
 
+bool ATile::HasEntity(AEntity* entity) const {
+    return CurrentEntities.Contains(entity); // Ensure this matches the declaration in Tile.h
+}
+
 AEntity* ATile::GetEntity() const {
     if (CurrentEntities.Num() > 0) {
         return CurrentEntities[0];

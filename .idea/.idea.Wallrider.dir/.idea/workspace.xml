@@ -10,8 +10,6 @@
     <list default="true" id="fa90e9e1-6b17-401d-ae0d-eea3124f396b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Wallrider.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Wallrider.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Wallrider/MapClasses/Tile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WallRider/Source/WallRider/Public/MapClasses/Tile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/WallRider/Source/WallRider/Public/MapClasses/Tile.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +188,7 @@
       <workItem from="1717079911837" duration="2579000" />
       <workItem from="1717252682277" duration="869000" />
       <workItem from="1717674338791" duration="3664000" />
-      <workItem from="1717678015697" duration="8288000" />
+      <workItem from="1717678015697" duration="8674000" />
     </task>
     <servers />
   </component>
